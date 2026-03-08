@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,8 +22,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-scale-bg/90 backdrop-blur-md border-b border-scale-border py-4' : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        isScrolled ? 'bg-[#171810]/95 backdrop-blur-md border-[#2a2c1f] py-4' : 'bg-transparent border-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex items-center justify-between">
@@ -37,7 +38,7 @@ export default function Navbar() {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className="text-sm font-medium text-scale-muted hover:text-scale-text transition-colors"
+                  className="text-sm font-medium text-[#a1a1aa] hover:text-[#03fa6e] transition-colors"
                 >
                   {link.name}
                 </a>
@@ -46,7 +47,7 @@ export default function Navbar() {
           </ul>
           <a
             href="#contacto"
-            className="bg-scale-accent hover:bg-scale-accent-hover text-scale-bg font-semibold px-6 py-2.5 rounded-full text-sm transition-all duration-300 shadow-[0_0_15px_rgba(3,250,110,0.3)] hover:shadow-[0_0_25px_rgba(3,250,110,0.5)]"
+            className="bg-[#03fa6e] hover:bg-[#02d65e] text-[#171810] font-semibold px-6 py-2.5 rounded-full text-sm transition-all duration-300 shadow-[0_0_15px_rgba(3,250,110,0.3)] hover:shadow-[0_0_25px_rgba(3,250,110,0.5)] transform hover:-translate-y-0.5"
           >
             Solicitar Presupuesto
           </a>
@@ -63,30 +64,38 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Nav */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-scale-bg border-b border-scale-border py-4 px-6 flex flex-col gap-4 shadow-xl">
-          <ul className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="text-base font-medium text-scale-muted hover:text-scale-text transition-colors block"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <a
-            href="#contacto"
-            className="bg-scale-accent text-scale-bg font-semibold px-6 py-3 rounded-full text-center transition-colors mt-2"
-            onClick={() => setIsMobileMenuOpen(false)}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-[#171810] border-b border-[#2a2c1f] py-4 px-6 flex flex-col gap-4 shadow-xl"
           >
-            Solicitar Presupuesto
-          </a>
-        </div>
-      )}
+            <ul className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-base font-medium text-[#a1a1aa] hover:text-[#03fa6e] transition-colors block"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#contacto"
+              className="bg-[#03fa6e] text-[#171810] font-semibold px-6 py-3 rounded-full text-center transition-all duration-300 hover:bg-[#02d65e] mt-2 shadow-[0_0_15px_rgba(3,250,110,0.2)]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Solicitar Presupuesto
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

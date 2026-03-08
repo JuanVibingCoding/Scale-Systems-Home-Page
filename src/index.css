@@ -11,7 +11,35 @@
   --color-scale-muted: #a1a1aa;
   --color-scale-card: #1f2017;
   --color-scale-border: #2a2c1f;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+  }
+  .glass-card {
+    @apply bg-[#1f2017]/80 backdrop-blur-md border border-[#2a2c1f] transition-all duration-300;
+  }
+  .glow-border {
+    @apply relative before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-br before:from-[#03fa6e]/50 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500;
+  }
+}
+
 
 html {
   scroll-behavior: smooth;

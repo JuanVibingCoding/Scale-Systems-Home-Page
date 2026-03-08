@@ -1,49 +1,62 @@
 import { Clock, Globe, MessageSquareWarning } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function PainPoints() {
   const painPoints = [
     {
-      icon: <Globe className="w-8 h-8 text-scale-accent" />,
+      icon: <Globe className="w-8 h-8 text-[#03fa6e]" />,
       title: 'Webs obsoletas que no venden',
       description: 'Tu sitio web actual es un folleto digital sin vida. No capta leads, no genera confianza y ahuyenta a tus clientes potenciales hacia la competencia.',
     },
     {
-      icon: <MessageSquareWarning className="w-8 h-8 text-scale-accent" />,
+      icon: <MessageSquareWarning className="w-8 h-8 text-[#03fa6e]" />,
       title: 'Atención al cliente lenta que pierde ventas',
       description: 'Responder tarde a un mensaje de WhatsApp o Instagram significa perder una venta. Tus clientes exigen respuestas inmediatas, 24/7.',
     },
     {
-      icon: <Clock className="w-8 h-8 text-scale-accent" />,
+      icon: <Clock className="w-8 h-8 text-[#03fa6e]" />,
       title: 'Procesos manuales que consumen tu tiempo',
       description: 'Pasas horas copiando datos, enviando correos manuales y gestionando tareas repetitivas en lugar de enfocarte en hacer crecer tu negocio.',
     },
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-scale-bg relative border-t border-scale-border/50">
+    <section className="py-16 sm:py-24 bg-[#171810] relative border-t border-[#2a2c1f]/50">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-white">
             El mercado venezolano cambió. <br className="hidden sm:block" />
-            <span className="text-scale-muted">¿Tu empresa se quedó atrás?</span>
+            <span className="text-[#a1a1aa]">¿Tu empresa se quedó atrás?</span>
           </h2>
-          <p className="text-base sm:text-lg text-scale-muted">
+          <p className="text-base sm:text-lg text-[#a1a1aa]">
             Si te identificas con alguno de estos problemas, estás perdiendo dinero todos los días.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {painPoints.map((point, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-scale-card border border-scale-border rounded-2xl p-8 transition-all duration-300 hover:border-scale-accent/30 hover:-translate-y-2 group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2, duration: 0.5 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="glass-card rounded-2xl p-8 transition-colors duration-300 hover:border-[#03fa6e]/30 group relative glow-border cursor-pointer overflow-hidden"
             >
-              <div className="w-16 h-16 rounded-xl bg-scale-bg flex items-center justify-center mb-6 border border-scale-border group-hover:border-scale-accent/50 transition-colors">
+              <div className="w-16 h-16 rounded-xl bg-[#171810] flex items-center justify-center mb-6 border border-[#2a2c1f] group-hover:border-[#03fa6e]/50 transition-colors z-10 relative">
                 {point.icon}
               </div>
-              <h3 className="text-xl font-bold mb-4 text-scale-text">{point.title}</h3>
-              <p className="text-scale-muted leading-relaxed">{point.description}</p>
-            </div>
+              <h3 className="text-xl font-bold mb-4 text-white z-10 relative">{point.title}</h3>
+              <p className="text-[#a1a1aa] leading-relaxed z-10 relative">{point.description}</p>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#03fa6e]/5 rounded-bl-[100px] -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </motion.div>
           ))}
         </div>
       </div>

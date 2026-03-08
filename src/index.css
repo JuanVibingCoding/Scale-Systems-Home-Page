@@ -33,7 +33,7 @@
     @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
   }
   .glass-card {
-    @apply bg-[#1f2017]/80 backdrop-blur-md border border-[#2a2c1f] transition-all duration-300;
+    @apply bg-[#1f2017]/80 backdrop-blur-md border border-[#2a2c1f];
   }
   .glow-border {
     @apply relative before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-br before:from-[#03fa6e]/50 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500;

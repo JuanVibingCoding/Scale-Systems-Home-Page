@@ -4,17 +4,17 @@ import { motion } from 'motion/react';
 export default function PainPoints() {
   const painPoints = [
     {
-      icon: <Globe className="w-8 h-8 text-[#03fa6e]" />,
+      icon: <Globe className="w-8 h-8 text-[#03fa6e] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" />,
       title: 'Webs obsoletas que no venden',
       description: 'Tu sitio web actual es un folleto digital sin vida. No capta leads, no genera confianza y ahuyenta a tus clientes potenciales hacia la competencia.',
     },
     {
-      icon: <MessageSquareWarning className="w-8 h-8 text-[#03fa6e]" />,
+      icon: <MessageSquareWarning className="w-8 h-8 text-[#03fa6e] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />,
       title: 'Atención al cliente lenta que pierde ventas',
       description: 'Responder tarde a un mensaje de WhatsApp o Instagram significa perder una venta. Tus clientes exigen respuestas inmediatas, 24/7.',
     },
     {
-      icon: <Clock className="w-8 h-8 text-[#03fa6e]" />,
+      icon: <Clock className="w-8 h-8 text-[#03fa6e] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-12" />,
       title: 'Procesos manuales que consumen tu tiempo',
       description: 'Pasas horas copiando datos, enviando correos manuales y gestionando tareas repetitivas en lugar de enfocarte en hacer crecer tu negocio.',
     },
@@ -46,11 +46,11 @@ export default function PainPoints() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ delay: index * 0.1, duration: 0.4, ease: "easeOut" }}
+              whileHover={{ scale: 1.02, y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
               className="glass-card rounded-2xl p-8 transition-colors duration-300 hover:border-[#03fa6e]/30 group relative glow-border cursor-pointer overflow-hidden"
             >
-              <div className="w-16 h-16 rounded-xl bg-[#171810] flex items-center justify-center mb-6 border border-[#2a2c1f] group-hover:border-[#03fa6e]/50 transition-colors z-10 relative">
+              <div className="w-16 h-16 rounded-xl bg-[#171810] flex items-center justify-center mb-6 border border-[#2a2c1f] group-hover:border-[#03fa6e]/50 transition-colors duration-300 z-10 relative">
                 {point.icon}
               </div>
               <h3 className="text-xl font-bold mb-4 text-white z-10 relative">{point.title}</h3>

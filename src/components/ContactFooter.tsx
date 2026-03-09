@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
-
+import { GlowingEffect } from './ui/glowing-effect';
 export default function ContactFooter() {
   return (
     <footer id="contacto" className="bg-scale-bg py-16 sm:py-32 relative border-t border-scale-border">
@@ -34,66 +34,69 @@ export default function ContactFooter() {
           </div>
         </div>
 
-        <div className="bg-scale-card border border-scale-border rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-          {/* Subtle Glow */}
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-scale-accent rounded-full mix-blend-screen filter blur-[100px] opacity-10 pointer-events-none"></div>
-          
-          <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Solicitar Presupuesto</h3>
-          
-          <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="relative rounded-3xl border border-scale-border shadow-2xl p-[1.5px] md:p-[2px]">
+          <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} className="z-0" />
+          <div className="relative z-10 bg-scale-card rounded-[calc(1.5rem-2px)] p-6 sm:p-10 overflow-hidden h-full pointer-events-auto">
+            {/* Subtle Glow */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-scale-accent rounded-full mix-blend-screen filter blur-[100px] opacity-10 pointer-events-none"></div>
+            
+            <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Solicitar Presupuesto</h3>
+            
+            <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium text-scale-muted">Nombre Completo</label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
+                    placeholder="Ej. Carlos Pérez"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="company" className="text-sm font-medium text-scale-muted">Empresa</label>
+                  <input
+                    type="text"
+                    id="company"
+                    className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
+                    placeholder="Tu empresa C.A."
+                  />
+                </div>
+              </div>
+
               <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-scale-muted">Nombre Completo</label>
+                <label htmlFor="email" className="text-sm font-medium text-scale-muted">Correo Electrónico</label>
                 <input
-                  type="text"
-                  id="name"
+                  type="email"
+                  id="email"
                   className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
-                  placeholder="Ej. Carlos Pérez"
+                  placeholder="carlos@empresa.com"
                 />
               </div>
+
               <div className="space-y-2">
-                <label htmlFor="company" className="text-sm font-medium text-scale-muted">Empresa</label>
-                <input
-                  type="text"
-                  id="company"
-                  className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
-                  placeholder="Tu empresa C.A."
-                />
+                <label htmlFor="service" className="text-sm font-medium text-scale-muted">¿Qué necesitas?</label>
+                <select
+                  id="service"
+                  className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all appearance-none"
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="web">Diseño Web Vanguardista</option>
+                  <option value="automation">Automatización Pro</option>
+                  <option value="chatbot">AI Chatbots</option>
+                  <option value="all">Consultoría Integral</option>
+                </select>
               </div>
-            </div>
 
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-scale-muted">Correo Electrónico</label>
-              <input
-                type="email"
-                id="email"
-                className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
-                placeholder="carlos@empresa.com"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="service" className="text-sm font-medium text-scale-muted">¿Qué necesitas?</label>
-              <select
-                id="service"
-                className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all appearance-none"
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 bg-scale-accent hover:bg-scale-accent-hover text-scale-bg font-bold px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg transition-all duration-300 shadow-[0_0_20px_rgba(3,250,110,0.3)] hover:shadow-[0_0_30px_rgba(3,250,110,0.5)] mt-4"
               >
-                <option value="">Selecciona una opción</option>
-                <option value="web">Diseño Web Vanguardista</option>
-                <option value="automation">Automatización Pro</option>
-                <option value="chatbot">AI Chatbots</option>
-                <option value="all">Consultoría Integral</option>
-              </select>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-scale-accent hover:bg-scale-accent-hover text-scale-bg font-bold px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg transition-all duration-300 shadow-[0_0_20px_rgba(3,250,110,0.3)] hover:shadow-[0_0_30px_rgba(3,250,110,0.5)] mt-4"
-            >
-              Enviar Solicitud
-              <ArrowRight size={20} />
-            </button>
-          </form>
+                Enviar Solicitud
+                <ArrowRight size={20} />
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 

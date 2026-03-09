@@ -1,4 +1,5 @@
 import { Code2, Settings, Bot } from 'lucide-react';
+import { BlurredStagger } from './ui/blurred-stagger-text';
 
 export default function Services() {
   const services = [
@@ -32,12 +33,12 @@ export default function Services() {
             <span>Nuestras Soluciones</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
-            El sistema operativo para <br className="hidden sm:block" />
-            <span className="text-scale-accent">escalar tu negocio</span>
+            <BlurredStagger text="El sistema operativo para" className="inline-block" /> <br className="hidden sm:block" />
+            <BlurredStagger text="escalar tu negocio" className="text-scale-accent inline-block" />
           </h2>
-          <p className="text-base sm:text-xl text-scale-muted">
-            Implementamos tecnología de punta para que dejes de apagar incendios y empieces a dirigir tu empresa.
-          </p>
+          <div className="text-base sm:text-xl text-scale-muted">
+            <BlurredStagger text="Implementamos tecnología de punta para que dejes de apagar incendios y empieces a dirigir tu empresa." className="inline-block" />
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">

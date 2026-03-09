@@ -1,5 +1,7 @@
 import { ArrowRight, Cpu } from 'lucide-react';
 import { motion } from 'motion/react';
+import ParticleEffectForHero from '@/components/ui/particle-effect-for-hero';
+import { Typewriter } from '@/components/ui/typewriter-text';
 
 export default function Hero() {
   return (
@@ -7,18 +9,21 @@ export default function Hero() {
       id="inicio"
       className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#171810]"
     >
+      {/* Interactive Particle Effect */}
+      <ParticleEffectForHero />
+
       {/* Background Tech Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#03fa6e] rounded-full mix-blend-screen filter blur-[150px] animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#02d65e] rounded-full mix-blend-screen filter blur-[200px] animate-float"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10 grid lg:grid-cols-2 gap-12 items-center pointer-events-none">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col items-start gap-6 sm:gap-8 max-w-2xl"
+          className="flex flex-col items-start gap-6 sm:gap-8 max-w-2xl pointer-events-auto"
         >
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -30,8 +35,31 @@ export default function Hero() {
             <span>Agencia de Automatización en Venezuela</span>
           </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
-            Escala tu empresa en Venezuela con <span className="text-[#03fa6e]">Inteligencia Artificial</span> y Automatización.
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white min-h-[140px] sm:min-h-[160px] md:min-h-[180px] lg:min-h-[200px]">
+            <Typewriter 
+              text="Escala tu empresa en Venezuela con Inteligencia Artificial y Automatización."
+              speed={50}
+              renderText={(text) => {
+                const targetSubstring = "Inteligencia Artificial";
+                const targetIndex = "Escala tu empresa en Venezuela con ".length;
+                
+                if (text.length <= targetIndex) {
+                   return text;
+                }
+                
+                const beforeTarget = text.substring(0, targetIndex);
+                const duringTarget = text.substring(targetIndex, targetIndex + targetSubstring.length);
+                const afterTarget = text.substring(targetIndex + targetSubstring.length);
+                
+                return (
+                  <>
+                    {beforeTarget}
+                    <span className="text-[#03fa6e]">{duringTarget}</span>
+                    {afterTarget}
+                  </>
+                );
+              }}
+            />
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-[#a1a1aa] leading-relaxed max-w-xl">
@@ -64,7 +92,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="hidden lg:flex justify-center items-center relative"
+          className="hidden lg:flex justify-center items-center relative pointer-events-auto"
         >
           {/* Abstract Tech Visual */}
           <div className="relative w-full aspect-square max-w-md">

@@ -1,5 +1,6 @@
 import { Clock, Globe, MessageSquareWarning } from 'lucide-react';
 import { motion } from 'motion/react';
+import { BlurredStagger } from './ui/blurred-stagger-text';
 
 export default function PainPoints() {
   const painPoints = [
@@ -23,21 +24,15 @@ export default function PainPoints() {
   return (
     <section className="py-16 sm:py-24 bg-[#171810] relative border-t border-[#2a2c1f]/50">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
-        >
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-white">
-            El mercado venezolano cambió. <br className="hidden sm:block" />
-            <span className="text-[#a1a1aa]">¿Tu empresa se quedó atrás?</span>
+            <BlurredStagger text="El mercado venezolano cambió." className="inline-block" /> <br className="hidden sm:block" />
+            <BlurredStagger text="¿Tu empresa se quedó atrás?" className="text-[#a1a1aa] inline-block" />
           </h2>
-          <p className="text-base sm:text-lg text-[#a1a1aa]">
-            Si te identificas con alguno de estos problemas, estás perdiendo dinero todos los días.
-          </p>
-        </motion.div>
+          <div className="text-base sm:text-lg text-[#a1a1aa]">
+            <BlurredStagger text="Si te identificas con alguno de estos problemas, estás perdiendo dinero todos los días." className="inline-block" />
+          </div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {painPoints.map((point, index) => (

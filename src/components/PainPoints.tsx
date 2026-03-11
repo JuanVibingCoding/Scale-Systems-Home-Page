@@ -5,17 +5,41 @@ import { BlurredStagger } from './ui/blurred-stagger-text';
 export default function PainPoints() {
   const painPoints = [
     {
-      icon: <Globe className="w-8 h-8 text-[#03fa6e] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" />,
+      icon: Globe,
+      colorClasses: {
+        icon: 'text-[#0375fa]',
+        cardHover: 'hover:border-[#0375fa]/30',
+        iconBgHover: 'group-hover:border-[#0375fa]/50',
+        glowBg: 'bg-[#0375fa]/5',
+        glowBorder: 'before:from-[#0375fa]/50',
+      },
+      animation: 'group-hover:-rotate-6',
       title: 'Webs obsoletas que no venden',
       description: 'Tu sitio web actual es un folleto digital sin vida. No capta leads, no genera confianza y ahuyenta a tus clientes potenciales hacia la competencia.',
     },
     {
-      icon: <MessageSquareWarning className="w-8 h-8 text-[#03fa6e] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />,
+      icon: MessageSquareWarning,
+      colorClasses: {
+        icon: 'text-[#fadc03]',
+        cardHover: 'hover:border-[#fadc03]/30',
+        iconBgHover: 'group-hover:border-[#fadc03]/50',
+        glowBg: 'bg-[#fadc03]/5',
+        glowBorder: 'before:from-[#fadc03]/50',
+      },
+      animation: 'group-hover:rotate-6',
       title: 'Atención al cliente lenta que pierde ventas',
       description: 'Responder tarde a un mensaje de WhatsApp o Instagram significa perder una venta. Tus clientes exigen respuestas inmediatas, 24/7.',
     },
     {
-      icon: <Clock className="w-8 h-8 text-[#03fa6e] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-12" />,
+      icon: Clock,
+      colorClasses: {
+        icon: 'text-[#fa0303]',
+        cardHover: 'hover:border-[#fa0303]/30',
+        iconBgHover: 'group-hover:border-[#fa0303]/50',
+        glowBg: 'bg-[#fa0303]/5',
+        glowBorder: 'before:from-[#fa0303]/50',
+      },
+      animation: 'group-hover:-rotate-12',
       title: 'Procesos manuales que consumen tu tiempo',
       description: 'Pasas horas copiando datos, enviando correos manuales y gestionando tareas repetitivas en lugar de enfocarte en hacer crecer tu negocio.',
     },
@@ -35,7 +59,9 @@ export default function PainPoints() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {painPoints.map((point, index) => (
+          {painPoints.map((point, index) => {
+            const Icon = point.icon;
+            return (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -43,16 +69,16 @@ export default function PainPoints() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.4, ease: "easeOut" }}
               whileHover={{ scale: 1.02, y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
-              className="glass-card rounded-2xl p-8 transition-colors duration-300 hover:border-[#03fa6e]/30 group relative glow-border cursor-pointer overflow-hidden"
+              className={`glass-card rounded-2xl p-8 transition-colors duration-300 group relative overflow-hidden before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-br before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 ${point.colorClasses.glowBorder} ${point.colorClasses.cardHover}`}
             >
-              <div className="w-16 h-16 rounded-xl bg-[#171810] flex items-center justify-center mb-6 border border-[#2a2c1f] group-hover:border-[#03fa6e]/50 transition-colors duration-300 z-10 relative">
-                {point.icon}
+              <div className={`w-16 h-16 rounded-xl bg-[#171810] flex items-center justify-center mb-6 border border-[#2a2c1f] transition-colors duration-300 z-10 relative ${point.colorClasses.iconBgHover}`}>
+                <Icon className={`w-8 h-8 transition-transform duration-300 group-hover:scale-110 ${point.colorClasses.icon} ${point.animation}`} />
               </div>
               <h3 className="text-xl font-bold mb-4 text-white z-10 relative">{point.title}</h3>
               <p className="text-[#a1a1aa] leading-relaxed z-10 relative">{point.description}</p>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#03fa6e]/5 rounded-bl-[100px] -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className={`absolute top-0 right-0 w-32 h-32 rounded-bl-[100px] -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${point.colorClasses.glowBg}`}></div>
             </motion.div>
-          ))}
+          )})}
         </div>
       </div>
     </section>

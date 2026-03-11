@@ -27,8 +27,8 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex items-center justify-between">
-        <a href="#inicio" className="text-2xl font-bold tracking-tighter text-scale-text">
-          Scale<span className="text-scale-accent">Systems</span>
+        <a href="#inicio" className="flex items-center group transition-transform hover:scale-105">
+          <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems Logo" className="h-7 md:h-9 w-auto" />
         </a>
 
         {/* Desktop Nav */}

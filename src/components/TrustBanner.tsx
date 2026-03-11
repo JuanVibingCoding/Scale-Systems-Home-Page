@@ -1,6 +1,34 @@
+import { useEffect, useRef } from 'react';
 import { ShieldCheck } from 'lucide-react';
+import { useInView, useMotionValue, useSpring } from 'motion/react';
 import { BlurredStagger } from './ui/blurred-stagger-text';
 import { GlowingEffect } from './ui/glowing-effect';
+
+function AnimatedNumber({ value, suffix = "" }: { value: number, suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    damping: 50,
+    stiffness: 100,
+  });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [isInView, motionValue, value]);
+
+  useEffect(() => {
+    springValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = `${Number(latest.toFixed(0))}${suffix}`;
+      }
+    });
+  }, [springValue, suffix]);
+
+  return <span ref={ref}>0{suffix}</span>;
+}
 
 export default function TrustBanner() {
   return (
@@ -28,7 +56,7 @@ export default function TrustBanner() {
             <div className="relative h-full rounded-2xl border border-scale-border p-[1.5px] md:p-[2px]">
               <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} className="z-0" />
               <div className="relative z-10 bg-scale-bg rounded-[15px] p-4 sm:p-6 text-center h-full flex flex-col justify-center overflow-hidden pointer-events-none">
-                <div className="text-3xl sm:text-4xl font-bold text-scale-accent mb-1 sm:mb-2">24/7</div>
+                <div className="text-3xl sm:text-4xl font-bold text-scale-accent mb-1 sm:mb-2"><AnimatedNumber value={24} suffix="/7" /></div>
                 <div className="text-xs sm:text-sm text-scale-muted font-medium">Operación Continua</div>
               </div>
             </div>
@@ -36,7 +64,7 @@ export default function TrustBanner() {
             <div className="relative h-full rounded-2xl border border-scale-border p-[1.5px] md:p-[2px]">
               <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} className="z-0" />
               <div className="relative z-10 bg-scale-bg rounded-[15px] p-4 sm:p-6 text-center h-full flex flex-col justify-center overflow-hidden pointer-events-none">
-                <div className="text-3xl sm:text-4xl font-bold text-scale-accent mb-1 sm:mb-2">10x</div>
+                <div className="text-3xl sm:text-4xl font-bold text-scale-accent mb-1 sm:mb-2"><AnimatedNumber value={10} suffix="x" /></div>
                 <div className="text-xs sm:text-sm text-scale-muted font-medium">Velocidad de Respuesta</div>
               </div>
             </div>
@@ -44,7 +72,7 @@ export default function TrustBanner() {
             <div className="relative h-full rounded-2xl border border-scale-border p-[1.5px] md:p-[2px] col-span-2">
               <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} className="z-0" />
               <div className="relative z-10 bg-scale-bg rounded-[15px] p-4 sm:p-6 text-center h-full flex flex-col justify-center overflow-hidden pointer-events-none">
-                <div className="text-3xl sm:text-4xl font-bold text-scale-accent mb-1 sm:mb-2">100%</div>
+                <div className="text-3xl sm:text-4xl font-bold text-scale-accent mb-1 sm:mb-2"><AnimatedNumber value={100} suffix="%" /></div>
                 <div className="text-xs sm:text-sm text-scale-muted font-medium">Enfoque en Conversión</div>
               </div>
             </div>

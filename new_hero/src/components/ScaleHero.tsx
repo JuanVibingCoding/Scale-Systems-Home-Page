@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Cpu, Send, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import ParticleEffectForHero from '@/components/ui/particle-effect-for-hero';
-import { Typewriter } from '@/components/ui/typewriter-text';
+import { Send, X, Terminal } from 'lucide-react';
 
 const useGlobalMouse = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -54,8 +52,6 @@ const RobotIcon = ({ mousePos, className = "", isDark = false }: { mousePos: {x:
 
 const HeroCard = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: number, y: number} }) => {
   const [isReady, setIsReady] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -64,67 +60,17 @@ const HeroCard = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: nu
     return () => clearTimeout(timer);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current || !cardRef.current) return;
-    const container = containerRef.current;
-    const card = cardRef.current;
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    // Invert rotation direction slightly for a natural tilt feel
-    // Use a larger divisor for a much softer & elegant effect
-    const rotateX = (centerY - y) / 35;
-    const rotateY = (x - centerX) / 35;
-
-    card.style.setProperty('--x', `${x}px`);
-    card.style.setProperty('--y', `${y}px`);
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
-  };
-
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    const card = cardRef.current;
-    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    card.style.setProperty('--x', `50%`);
-    card.style.setProperty('--y', `50%`);
-  };
-
   return (
     <motion.div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      className="w-full max-w-[500px] bg-[#1c1d16] border border-[#03fa6e]/20 rounded-2xl p-8 cursor-pointer shadow-[0_0_40px_rgba(3,250,110,0.05)] hover:shadow-[0_0_60px_rgba(3,250,110,0.1)] transition-shadow relative overflow-hidden group"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3 }}
-      className="w-full relative group"
-      style={{ perspective: 1000 }}
     >
-      <div
-        ref={cardRef}
-        onClick={onClick}
-        className="w-full bg-[#1c1d16] border border-[#03fa6e]/20 rounded-2xl p-8 cursor-pointer shadow-[0_0_40px_rgba(3,250,110,0.05)] hover:shadow-[0_0_60px_rgba(3,250,110,0.1)] relative"
-        style={{ transition: 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease', transformStyle: 'preserve-3d' }}
-      >
-        <div 
-          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden"
-        >
-          <div 
-            className="absolute -inset-px transition-all duration-75"
-            style={{
-              background: `radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(3, 250, 110, 0.12), transparent 40%)`
-            }}
-          />
-        </div>
-        
-        <div style={{ transform: 'translateZ(30px)' }} className="relative z-10 pointer-events-none">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="pointer-events-auto">
-            {/* Top bar */}
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+        {/* Top bar */}
         <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
@@ -201,27 +147,7 @@ const HeroCard = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: nu
             </div>
           </div>
         </div>
-
-        <AnimatePresence>
-          {isReady && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              className="mt-6 pt-5 border-t border-[#03fa6e]/10 text-center"
-            >
-              <p className="text-[#a1a1aa] text-sm">
-                Habla con nuestro agente experto en atención al cliente.
-              </p>
-              <p className="text-[#03fa6e] text-xs font-semibold uppercase tracking-wider mt-2 group-hover:scale-105 transition-transform duration-300 inline-block pointer-events-auto">
-                Haz clic aquí para probarlo
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-          </motion.div>
-        </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -369,13 +295,15 @@ const ChatWindow = ({ onClose, mousePos }: { onClose: () => void, mousePos: {x: 
   );
 };
 
-export default function Hero() {
+export default function ScaleHero() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const globalMousePos = useGlobalMouse();
 
   useEffect(() => {
     const handleScroll = () => {
+      // Configuramos el umbral de scroll a 250px.
+      // Cuando el usuario baja más de 250px, el Hero desaparece y aparece el StickyIcon.
       setIsScrolled(window.scrollY > 250);
     };
     window.addEventListener('scroll', handleScroll);
@@ -383,106 +311,54 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
-      id="inicio"
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#171810]"
-    >
-      {/* Interactive Particle Effect */}
-      <ParticleEffectForHero />
+    <div className="min-h-[200vh] bg-[#171810] text-white font-sans selection:bg-[#03fa6e] selection:text-black">
+      {/* Hero Section */}
+      <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 pb-32 px-4">
+        {/* Background effects */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#03fa6e]/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#03fa6e]/5 rounded-full blur-[100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-b from-transparent via-[#03fa6e]/5 to-transparent opacity-50" />
+        </div>
 
-      {/* Background Tech Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#03fa6e] rounded-full mix-blend-screen filter blur-[150px] animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#02d65e] rounded-full mix-blend-screen filter blur-[200px] animate-float"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10 grid lg:grid-cols-2 gap-12 items-center pointer-events-none">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col items-start gap-6 sm:gap-8 max-w-2xl pointer-events-auto"
-        >
-          <motion.div 
+        <div className="z-10 text-center mb-16 relative">
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#03fa6e]/30 bg-[#03fa6e]/10 text-[#03fa6e] text-xs sm:text-sm font-medium tracking-wide"
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center space-x-2 bg-[#2a2c24] border border-[#03fa6e]/20 px-4 py-1.5 rounded-full mb-8"
           >
-            <Cpu size={16} className="shrink-0" />
-            <span>Agencia de Automatización en Venezuela</span>
+            <span className="w-2 h-2 rounded-full bg-[#03fa6e] animate-pulse" />
+            <span className="text-xs font-mono text-[#03fa6e]">v2.0 Neural Engine Live</span>
           </motion.div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white min-h-[140px] sm:min-h-[160px] md:min-h-[180px] lg:min-h-[200px]">
-            <Typewriter 
-              text="Escala tu empresa en Venezuela con Inteligencia Artificial y Automatización."
-              speed={50}
-              renderText={(text) => {
-                const targetSubstring = "Inteligencia Artificial";
-                const targetIndex = "Escala tu empresa en Venezuela con ".length;
-                
-                if (text.length <= targetIndex) {
-                   return text;
-                }
-                
-                const beforeTarget = text.substring(0, targetIndex);
-                const duringTarget = text.substring(targetIndex, targetIndex + targetSubstring.length);
-                const afterTarget = text.substring(targetIndex + targetSubstring.length);
-                
-                return (
-                  <>
-                    {beforeTarget}
-                    <span className="text-[#03fa6e]">{duringTarget}</span>
-                    {afterTarget}
-                  </>
-                );
-              }}
-            />
-          </h1>
-
-          <p className="text-base sm:text-lg md:text-xl text-[#a1a1aa] leading-relaxed max-w-xl">
-            Dejamos atrás los procesos manuales. Diseñamos sistemas que trabajan por ti las 24 horas, optimizando tiempo, reduciendo costos y escalando tus ventas.
-          </p>
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mt-4"
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="text-6xl md:text-8xl font-bold tracking-tighter mb-6"
           >
-            <a
-              href="#contacto"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#03fa6e] hover:bg-[#02d65e] text-[#171810] font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300 shadow-[0_0_20px_rgba(3,250,110,0.4)] hover:shadow-[0_0_30px_rgba(3,250,110,0.6)] hover:-translate-y-1"
-            >
-              Solicitar Presupuesto
-              <ArrowRight size={20} />
-            </a>
-            <a
-              href="#servicios"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent border border-[#2a2c1f] hover:border-[#03fa6e]/50 text-white font-medium px-8 py-4 rounded-full text-lg transition-all duration-300"
-            >
-              Ver Servicios
-            </a>
-          </motion.div>
-        </motion.div>
+            Scale <span className="text-[#03fa6e]">Systems</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto font-light"
+          >
+            Inteligencia Artificial de próxima generación para escalar tus operaciones a niveles insospechados.
+          </motion.p>
+        </div>
 
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="hidden lg:flex justify-center items-center relative pointer-events-auto"
-        >
-          {/* New Interactive Hero Card */}
-          <div className="relative w-full aspect-square max-w-md flex items-center justify-center">
-            <AnimatePresence>
-              {!isChatOpen && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <HeroCard onClick={() => setIsChatOpen(true)} mousePos={globalMousePos} />
-                </div>
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.div>
+        {/* Hero Card Container */}
+        <div className="w-full max-w-[500px] h-[280px] z-20 flex items-center justify-center relative">
+           <AnimatePresence>
+             {!isChatOpen && (
+               <div className="absolute inset-0 flex items-center justify-center">
+                 <HeroCard onClick={() => setIsChatOpen(true)} mousePos={globalMousePos} />
+               </div>
+             )}
+           </AnimatePresence>
+        </div>
       </div>
 
       {/* Fixed Elements */}
@@ -497,6 +373,6 @@ export default function Hero() {
           <ChatWindow onClose={() => setIsChatOpen(false)} mousePos={globalMousePos} />
         )}
       </AnimatePresence>
-    </section>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Navbar() {
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -13,11 +14,17 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  // Custom scroll handler that first checks if we're on the homepage
+  // or navigates to root with hash using Link/a-tag
+  const handleNavClick = () => {
+    setIsMobileMenuOpen(false);
+  }
 
   const navLinks = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: 'Contacto', href: '#contacto' },
+    { name: 'Inicio', href: '/#inicio' },
+    { name: 'Servicios', href: '/#servicios' },
+    { name: 'Contacto', href: '/#contacto' },
   ];
 
   return (
@@ -27,7 +34,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex items-center justify-between">
-        <a href="#inicio" className="flex items-center group transition-transform hover:scale-105">
+        <a href="/#inicio" className="flex items-center group transition-transform hover:scale-105">
           <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems Logo" className="h-7 md:h-9 w-auto" />
         </a>
 
@@ -46,7 +53,7 @@ export default function Navbar() {
             ))}
           </ul>
           <a
-            href="#contacto"
+            href="/#contacto"
             className="bg-[#03fa6e] hover:bg-[#02d65e] text-[#171810] font-semibold px-6 py-2.5 rounded-full text-sm transition-all duration-300 shadow-[0_0_15px_rgba(3,250,110,0.3)] hover:shadow-[0_0_25px_rgba(3,250,110,0.5)] transform hover:-translate-y-0.5"
           >
             Solicitar Presupuesto
@@ -79,7 +86,7 @@ export default function Navbar() {
                   <a
                     href={link.href}
                     className="text-base font-medium text-[#a1a1aa] hover:text-[#03fa6e] transition-colors block"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={handleNavClick}
                   >
                     {link.name}
                   </a>
@@ -87,9 +94,9 @@ export default function Navbar() {
               ))}
             </ul>
             <a
-              href="#contacto"
+              href="/#contacto"
               className="bg-[#03fa6e] text-[#171810] font-semibold px-6 py-3 rounded-full text-center transition-all duration-300 hover:bg-[#02d65e] mt-2 shadow-[0_0_15px_rgba(3,250,110,0.2)]"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={handleNavClick}
             >
               Solicitar Presupuesto
             </a>

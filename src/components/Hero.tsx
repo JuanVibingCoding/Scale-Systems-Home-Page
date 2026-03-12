@@ -3,6 +3,8 @@ import { ArrowRight, Cpu, Send, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ParticleEffectForHero from '@/components/ui/particle-effect-for-hero';
 import { Typewriter } from '@/components/ui/typewriter-text';
+import { sendMessage, initAgent } from '@/lib/chat-agent';
+import ReactMarkdown from 'react-markdown';
 
 const useGlobalMouse = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -52,16 +54,31 @@ const RobotIcon = ({ mousePos, className = "", isDark = false }: { mousePos: {x:
   );
 };
 
-const HeroCard = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: number, y: number} }) => {
+const HeroCard = ({ onClick }: { onClick: () => void }) => {
+  const mousePos = useGlobalMouse();
   const [isReady, setIsReady] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 2500); // 2.5 seconds loading time
-    return () => clearTimeout(timer);
+    const init = async () => {
+      const startTime = Date.now();
+      const isAgentReady = await initAgent();
+      
+      // Mantenemos al menos 1.5s de carga por estética, pero esperamos lo que haga falta a la IA
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, 1500 - elapsedTime);
+      
+      setTimeout(() => {
+        if (isAgentReady) {
+          setIsReady(true);
+        } else {
+          console.error("No se pudo inicializar el agente. Verifica tu VITE_GEMINI_API_KEY.");
+        }
+      }, remainingTime);
+    };
+
+    init();
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -131,7 +148,7 @@ const HeroCard = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: nu
             <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
             <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
           </div>
-          <div className="font-mono text-xs text-gray-400">
+          <div className="font-mono text-xs text-gray-400 uppercase">
             sys.status: <span className={isReady ? "text-[#03fa6e]" : "text-[#ffbd2e]"}>{isReady ? "ONLINE" : "BOOTING"}</span>
           </div>
         </div>
@@ -226,7 +243,8 @@ const HeroCard = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: nu
   );
 };
 
-const StickyIcon = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: number, y: number} }) => {
+const StickyIcon = ({ onClick }: { onClick: () => void }) => {
+  const mousePos = useGlobalMouse();
   return (
     <motion.div
       className="fixed bottom-8 right-8 z-50 flex flex-col items-end"
@@ -257,28 +275,41 @@ const StickyIcon = ({ onClick, mousePos }: { onClick: () => void, mousePos: {x: 
   );
 };
 
-const ChatWindow = ({ onClose, mousePos }: { onClose: () => void, mousePos: {x: number, y: number} }) => {
+const ChatWindow = ({ onClose }: { onClose: () => void }) => {
+  const mousePos = useGlobalMouse();
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hola, soy el asistente de Scale Systems. ¿En qué puedo ayudarte a escalar hoy?", sender: 'ai' }
+    { id: 1, text: "👋 Hola, soy Scale, el asistente virtual de Scale Systems. ¿En qué puedo ayudarte hoy?", sender: 'ai' }
   ]);
   const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const handleSend = (e?: React.FormEvent) => {
+  const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || isTyping) return;
     
-    const newMsg = { id: Date.now(), text: input, sender: 'user' };
+    const userText = input.trim();
+    const newMsg = { id: Date.now(), text: userText, sender: 'user' };
     setMessages(prev => [...prev, newMsg]);
     setInput("");
+    setIsTyping(true);
 
-    setTimeout(() => {
-      setMessages(prev => [...prev, { 
-        id: Date.now() + 1, 
-        text: "Interesante. Nuestro Neural Engine puede optimizar ese proceso. ¿Quieres saber más?", 
-        sender: 'ai' 
+    try {
+      const reply = await sendMessage(userText);
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        text: reply,
+        sender: 'ai',
       }]);
-    }, 1000);
+    } catch {
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        text: 'Ups, algo falló. Intenta de nuevo en un momento. 🙏',
+        sender: 'ai',
+      }]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   useEffect(() => {
@@ -322,7 +353,7 @@ const ChatWindow = ({ onClose, mousePos }: { onClose: () => void, mousePos: {x: 
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-4 scrollbar-thin scrollbar-thumb-[#03fa6e]/20 scrollbar-track-transparent">
+        <div className="flex-1 overflow-y-auto p-5 space-y-4 chat-messages-area scrollbar-thin scrollbar-thumb-[#03fa6e]/40 scrollbar-track-transparent">
           {messages.map((msg) => (
             <motion.div 
               key={msg.id}
@@ -337,30 +368,84 @@ const ChatWindow = ({ onClose, mousePos }: { onClose: () => void, mousePos: {x: 
                     : 'bg-[#2a2c24] text-gray-200 rounded-bl-sm border border-white/5'
                 }`}
               >
-                {msg.text}
+                <ReactMarkdown 
+                  components={{
+                    p: ({node, ...props}) => <p className="mb-0" {...props} />,
+                    strong: ({node, ...props}) => <strong className="font-bold text-white" {...props} />,
+                    ul: ({node, ...props}) => <ul className="list-disc ml-4 mt-2" {...props} />,
+                    li: ({node, ...props}) => <li className="mb-1" {...props} />
+                  }}
+                >
+                  {msg.text}
+                </ReactMarkdown>
               </div>
             </motion.div>
           ))}
+
+          {/* Typing indicator */}
+          <AnimatePresence>
+            {isTyping && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="flex justify-start"
+              >
+                <div className="bg-[#2a2c24] border border-white/5 rounded-2xl rounded-bl-sm px-4 py-3 flex items-center gap-1.5">
+                  <motion.span
+                    className="w-2 h-2 rounded-full bg-[#03fa6e]/70"
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ repeat: Infinity, duration: 1.2, delay: 0 }}
+                  />
+                  <motion.span
+                    className="w-2 h-2 rounded-full bg-[#03fa6e]/70"
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ repeat: Infinity, duration: 1.2, delay: 0.2 }}
+                  />
+                  <motion.span
+                    className="w-2 h-2 rounded-full bg-[#03fa6e]/70"
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ repeat: Infinity, duration: 1.2, delay: 0.4 }}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <div ref={messagesEndRef} />
         </div>
 
         {/* Input Area */}
         <div className="p-4 border-t border-white/5 bg-[#171810]">
-          <form onSubmit={handleSend} className="relative flex items-center">
-            <Terminal className="absolute left-4 text-[#03fa6e]/50 w-4 h-4" />
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Inicia la secuencia..."
-              className="w-full bg-[#2a2c24] text-white text-sm rounded-xl pl-11 pr-12 py-3.5 focus:outline-none focus:ring-1 focus:ring-[#03fa6e]/50 placeholder-gray-500 font-mono border border-white/5"
-            />
+          <form onSubmit={handleSend} className="relative flex items-end gap-2">
+            <div className="relative flex-1">
+              <Terminal className="absolute left-4 top-4 text-[#03fa6e]/50 w-4 h-4" />
+              <textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                  }
+                }}
+                placeholder="Inicia la secuencia..."
+                rows={1}
+                className="w-full bg-[#2a2c24] text-white text-sm rounded-xl pl-11 pr-4 py-3.5 focus:outline-none focus:ring-1 focus:ring-[#03fa6e]/50 placeholder-gray-500 font-mono border border-white/5 resize-none min-h-[52px] max-h-[120px] transition-all scrollbar-thin scrollbar-thumb-white/10"
+                style={{ height: 'auto' }}
+                onInput={(e) => {
+                  const target = e.target as HTMLTextAreaElement;
+                  target.style.height = 'auto';
+                  target.style.height = target.scrollHeight + 'px';
+                }}
+              />
+            </div>
             <button 
               type="submit"
               disabled={!input.trim()}
-              className="absolute right-2 p-2 bg-[#03fa6e] text-[#171810] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#02d65e] transition-colors"
+              className="p-3.5 bg-[#03fa6e] text-[#171810] rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#02d65e] transition-colors flex-shrink-0"
             >
-              <Send size={16} />
+              <Send size={18} />
             </button>
           </form>
         </div>
@@ -372,7 +457,6 @@ const ChatWindow = ({ onClose, mousePos }: { onClose: () => void, mousePos: {x: 
 export default function Hero() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const globalMousePos = useGlobalMouse();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -477,7 +561,7 @@ export default function Hero() {
             <AnimatePresence>
               {!isChatOpen && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <HeroCard onClick={() => setIsChatOpen(true)} mousePos={globalMousePos} />
+                  <HeroCard onClick={() => setIsChatOpen(true)} />
                 </div>
               )}
             </AnimatePresence>
@@ -488,13 +572,13 @@ export default function Hero() {
       {/* Fixed Elements */}
       <AnimatePresence>
         {isScrolled && !isChatOpen && (
-          <StickyIcon onClick={() => setIsChatOpen(true)} mousePos={globalMousePos} />
+          <StickyIcon onClick={() => setIsChatOpen(true)} />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
         {isChatOpen && (
-          <ChatWindow onClose={() => setIsChatOpen(false)} mousePos={globalMousePos} />
+          <ChatWindow onClose={() => setIsChatOpen(false)} />
         )}
       </AnimatePresence>
     </section>

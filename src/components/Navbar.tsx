@@ -30,7 +30,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        isScrolled ? 'bg-[#171810]/95 backdrop-blur-md border-[#2a2c1f] py-4' : 'bg-transparent border-transparent py-6'
+        (isScrolled || isMobileMenuOpen) ? 'bg-[#171810]/95 backdrop-blur-md border-[#2a2c1f] py-4' : 'bg-transparent border-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex items-center justify-between">

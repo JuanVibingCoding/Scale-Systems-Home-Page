@@ -125,7 +125,7 @@ const HeroCard = ({ onClick }: { onClick: () => void }) => {
       <div
         ref={cardRef}
         onClick={onClick}
-        className="w-full bg-[#1c1d16] border border-[#03fa6e]/20 rounded-2xl p-8 cursor-pointer shadow-[0_0_40px_rgba(3,250,110,0.05)] hover:shadow-[0_0_60px_rgba(3,250,110,0.1)] relative"
+        className="w-full bg-[#1c1d16] border border-[#03fa6e]/20 rounded-2xl p-5 sm:p-8 cursor-pointer shadow-[0_0_40px_rgba(3,250,110,0.05)] hover:shadow-[0_0_60px_rgba(3,250,110,0.1)] relative group"
         style={{ transition: 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease', transformStyle: 'preserve-3d' }}
       >
         <div 
@@ -142,19 +142,19 @@ const HeroCard = ({ onClick }: { onClick: () => void }) => {
         <div style={{ transform: 'translateZ(30px)' }} className="relative z-10 pointer-events-none">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="pointer-events-auto">
             {/* Top bar */}
-        <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-            <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+        <div className="flex items-center justify-between mb-5 sm:mb-8 border-b border-white/5 pb-3 sm:pb-4">
+          <div className="flex space-x-1.5 sm:space-x-2">
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]" />
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
           </div>
-          <div className="font-mono text-xs text-gray-400 uppercase">
+          <div className="font-mono text-[10px] sm:text-xs text-gray-400 uppercase">
             sys.status: <span className={isReady ? "text-[#03fa6e]" : "text-[#ffbd2e]"}>{isReady ? "ONLINE" : "BOOTING"}</span>
           </div>
         </div>
 
         {/* Progress bars */}
-        <div className="space-y-4 mb-10">
+        <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-10">
           <div className="h-2 w-full bg-[#2a2c24] rounded-full overflow-hidden">
             <motion.div 
               className="h-full bg-[#03fa6e]"
@@ -182,18 +182,18 @@ const HeroCard = ({ onClick }: { onClick: () => void }) => {
         </div>
 
         {/* Bottom section */}
-        <div className="flex items-center space-x-5">
+        <div className="flex items-center space-x-4 sm:space-x-5">
           <div className="relative flex-shrink-0">
             <div className={`absolute inset-0 bg-[#03fa6e] blur-xl rounded-full transition-opacity duration-500 ${isReady ? 'opacity-40 group-hover:opacity-60' : 'opacity-10 group-hover:opacity-20'}`} />
-            <div className="w-16 h-16 rounded-full border border-[#03fa6e]/30 flex items-center justify-center relative z-10 bg-[#171810]">
-              <RobotIcon mousePos={mousePos} className="w-10 h-10" />
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-[#03fa6e]/30 flex items-center justify-center relative z-10 bg-[#171810]">
+              <RobotIcon mousePos={mousePos} className="w-7 h-7 sm:w-10 sm:h-10" />
             </div>
           </div>
           <div>
-            <h3 className="text-white font-bold text-lg tracking-wide">
+            <h3 className="text-white font-bold text-base sm:text-lg tracking-wide">
               {isReady ? "Neural Engine Ready" : "AI Core Active"}
             </h3>
-            <div className="text-[#03fa6e] font-mono text-sm mt-1 flex items-center h-5">
+            <div className="text-[#03fa6e] font-mono text-xs sm:text-sm mt-1 flex items-center h-5">
               <AnimatePresence mode="wait">
                 {isReady ? (
                   <motion.span 
@@ -225,12 +225,12 @@ const HeroCard = ({ onClick }: { onClick: () => void }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="mt-6 pt-5 border-t border-[#03fa6e]/10 text-center"
+              className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-[#03fa6e]/10 text-center"
             >
-              <p className="text-[#a1a1aa] text-sm">
+              <p className="text-[#a1a1aa] text-[13px] sm:text-sm px-2">
                 Habla con nuestro agente experto en atención al cliente.
               </p>
-              <p className="text-[#03fa6e] text-xs font-semibold uppercase tracking-wider mt-2 group-hover:scale-105 transition-transform duration-300 inline-block pointer-events-auto">
+              <p className="text-[#03fa6e] text-[10px] sm:text-xs font-semibold uppercase tracking-wider mt-2 group-hover:scale-105 transition-transform duration-300 inline-block pointer-events-auto">
                 Haz clic aquí para probarlo
               </p>
             </motion.div>
@@ -245,30 +245,44 @@ const HeroCard = ({ onClick }: { onClick: () => void }) => {
 
 const StickyIcon = ({ onClick }: { onClick: () => void }) => {
   const mousePos = useGlobalMouse();
+  const [showTooltip, setShowTooltip] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowTooltip(false);
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <motion.div
-      className="fixed bottom-8 right-8 z-50 flex flex-col items-end"
+      className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end"
       initial={{ opacity: 0, scale: 0.5, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.5, y: 20 }}
       transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
     >
       {/* Tooltip Message */}
-      <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.8 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ delay: 0.4, type: "spring", bounce: 0.4 }}
-        className="mb-3 mr-2 bg-[#2a2c24] border border-[#03fa6e]/30 text-white text-sm px-4 py-2 rounded-2xl rounded-br-sm shadow-lg pointer-events-none origin-bottom-right"
-      >
-        👋 ¿En qué te ayudo?
-      </motion.div>
+      <AnimatePresence>
+        {showTooltip && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.8, transition: { duration: 0.3 } }}
+            transition={{ delay: 0.4, type: "spring", bounce: 0.4 }}
+            className="mb-2 mr-1 bg-[#2a2c24] border border-[#03fa6e]/30 text-white text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl rounded-br-sm shadow-lg pointer-events-none origin-bottom-right"
+          >
+            👋 ¿En qué te ayudo?
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div
         onClick={onClick}
-        className="w-16 h-16 bg-[#03fa6e] rounded-2xl cursor-pointer shadow-[0_0_30px_rgba(3,250,110,0.3)] flex items-center justify-center hover:scale-105 transition-transform"
+        className="w-12 h-12 sm:w-16 sm:h-16 bg-[#03fa6e] rounded-xl sm:rounded-2xl cursor-pointer shadow-[0_0_30px_rgba(3,250,110,0.3)] flex items-center justify-center hover:scale-105 transition-transform"
       >
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-          <RobotIcon mousePos={mousePos} className="w-10 h-10" isDark={true} />
+          <RobotIcon mousePos={mousePos} className="w-7 h-7 sm:w-10 sm:h-10" isDark={true} />
         </motion.div>
       </div>
     </motion.div>
@@ -318,10 +332,10 @@ const ChatWindow = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <motion.div
-      className="fixed bottom-8 right-8 w-[380px] h-[600px] max-h-[80vh] bg-[#1c1d16] border border-[#03fa6e]/30 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] z-50 flex flex-col overflow-hidden origin-bottom-right"
-      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      className="fixed sm:bottom-8 sm:right-8 inset-0 sm:inset-auto w-full sm:w-[380px] h-[100dvh] sm:h-[600px] sm:max-h-[80vh] bg-[#1c1d16] sm:border border-[#03fa6e]/30 sm:rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] z-[100] flex flex-col overflow-hidden sm:origin-bottom-right"
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.8, y: 20 }}
+      exit={{ opacity: 0, scale: 0.9, y: 20 }}
       transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
     >
       <motion.div 
@@ -469,7 +483,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#171810]"
+      className="relative min-h-[100dvh] flex items-center justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 overflow-hidden bg-[#171810]"
     >
       {/* Interactive Particle Effect */}
       <ParticleEffectForHero />
@@ -480,24 +494,24 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#02d65e] rounded-full mix-blend-screen filter blur-[200px] animate-float"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10 grid lg:grid-cols-2 gap-12 items-center pointer-events-none">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center pointer-events-none pt-10 sm:pt-0">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col items-start gap-6 sm:gap-8 max-w-2xl pointer-events-auto"
+          className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 sm:gap-8 max-w-2xl mx-auto lg:mx-0 pointer-events-auto"
         >
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#03fa6e]/30 bg-[#03fa6e]/10 text-[#03fa6e] text-xs sm:text-sm font-medium tracking-wide"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[#03fa6e]/30 bg-[#03fa6e]/10 text-[#03fa6e] text-[11px] sm:text-sm font-medium tracking-wide"
           >
-            <Cpu size={16} className="shrink-0" />
+            <Cpu size={14} className="shrink-0 sm:w-4 sm:h-4" />
             <span>Agencia de Automatización en Venezuela</span>
           </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white min-h-[140px] sm:min-h-[160px] md:min-h-[180px] lg:min-h-[200px]">
+          <h1 className="text-[2.5rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white min-h-[220px] sm:min-h-[160px] md:min-h-[180px] lg:min-h-[200px]">
             <Typewriter 
               text="Escala tu empresa en Venezuela con Inteligencia Artificial y Automatización."
               speed={50}
@@ -524,7 +538,7 @@ export default function Hero() {
             />
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-[#a1a1aa] leading-relaxed max-w-xl">
+          <p className="text-[15px] sm:text-lg md:text-xl text-[#a1a1aa] leading-relaxed max-w-xl px-4 lg:px-0">
             Dejamos atrás los procesos manuales. Diseñamos sistemas que trabajan por ti las 24 horas, optimizando tiempo, reduciendo costos y escalando tus ventas.
           </p>
 
@@ -532,18 +546,18 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mt-4"
+            className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full px-4 lg:px-0 mt-2 sm:mt-4"
           >
             <a
               href="#contacto"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#03fa6e] hover:bg-[#02d65e] text-[#171810] font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300 shadow-[0_0_20px_rgba(3,250,110,0.4)] hover:shadow-[0_0_30px_rgba(3,250,110,0.6)] hover:-translate-y-1"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#03fa6e] hover:bg-[#02d65e] text-[#171810] font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300 shadow-[0_0_20px_rgba(3,250,110,0.4)] hover:shadow-[0_0_30px_rgba(3,250,110,0.6)] hover:-translate-y-1"
             >
               Solicitar Presupuesto
-              <ArrowRight size={20} />
+              <ArrowRight size={18} className="sm:w-5 sm:h-5" />
             </a>
             <a
               href="#servicios"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent border border-[#2a2c1f] hover:border-[#03fa6e]/50 text-white font-medium px-8 py-4 rounded-full text-lg transition-all duration-300"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#03fa6e]/50 hover:bg-[#03fa6e]/5 text-white font-medium px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300 hover:-translate-y-1"
             >
               Ver Servicios
             </a>
@@ -551,13 +565,13 @@ export default function Hero() {
         </motion.div>
 
         <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="hidden lg:flex justify-center items-center relative pointer-events-auto"
+          className="flex justify-center items-center relative pointer-events-auto w-full px-2 sm:px-0 mt-6 lg:mt-0"
         >
           {/* New Interactive Hero Card */}
-          <div className="relative w-full aspect-square max-w-md flex items-center justify-center">
+          <div className="relative w-full max-w-[340px] sm:max-w-md aspect-square flex items-center justify-center">
             <AnimatePresence>
               {!isChatOpen && (
                 <div className="absolute inset-0 flex items-center justify-center">

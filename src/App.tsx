@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import PainPoints from './components/PainPoints';
 import Services from './components/Services';
+import { PortfolioSection } from './components/portfolio/PortfolioSection';
 import TrustBanner from './components/TrustBanner';
 import ContactFooter from './components/ContactFooter';
 
@@ -22,6 +23,7 @@ function HomePage() {
         <Hero />
         <PainPoints />
         <Services />
+        <PortfolioSection />
         <TrustBanner />
       </main>
       <ContactFooter />

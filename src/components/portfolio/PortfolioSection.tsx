@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useLayoutEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { projectsData } from './data/projects';
 import { ProjectCard } from './ProjectCard';
@@ -7,7 +7,7 @@ import { ParticlesBackground } from './ParticlesBackground';
 export function PortfolioSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null);
-  const [dimensions, setDimensions] = useState({ contentWidth: 0, viewportWidth: 0 });
+  const [dimensions, setDimensions] = useState({ contentWidth: 0, viewportWidth: window.innerWidth });
 
   const measure = useCallback(() => {
     const content = document.getElementById('portfolio-track');
@@ -19,7 +19,7 @@ export function PortfolioSection() {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     measure();
     window.addEventListener('resize', measure);
     const timer = setTimeout(measure, 300);

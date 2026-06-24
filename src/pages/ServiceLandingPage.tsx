@@ -5,6 +5,10 @@ import ContactFooter from '../components/ContactFooter';
 import { ArrowLeft, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { GlowingEffect } from '../components/ui/glowing-effect';
+import { SEO } from '../components/SEO';
+import { JsonLd } from '../components/JsonLd';
+
+const SITE_URL = 'https://scalesystems.com.ve';
 
 const servicesData: Record<string, { title: string, subtitle: string, desc: string[], whatsappText: string }> = {
   'diseno-web': {
@@ -61,6 +65,25 @@ export default function ServiceLandingPage() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="flex flex-col min-h-screen"
     >
+      <SEO
+        title={data.title}
+        description={data.desc[0]}
+        canonical={`${SITE_URL}/servicio/${id}`}
+      />
+      <JsonLd schema={{
+        '@type': 'Service',
+        name: data.title,
+        description: data.desc[0],
+        provider: { '@type': 'Organization', name: 'Scale Systems' },
+        areaServed: { '@type': 'Country', name: 'VE' },
+      }} />
+      <JsonLd schema={{
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: data.title, item: `${SITE_URL}/servicio/${id}` },
+        ],
+      }} />
       <Navbar />
       
       <main className="flex-grow pt-32 pb-24 md:pt-40 md:pb-32 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto w-full relative">

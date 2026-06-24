@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 import { CHAT_MODEL, SYSTEM_PROMPT, CHAT_CONFIG, type ChatMessage } from '../src/lib/chat-config';
+import { createRateLimiter, getClientIp } from './_lib/rate-limit';
 
 const BodySchema = z.object({
   message: z.string().min(1).max(2000),
@@ -16,20 +17,7 @@ const BodySchema = z.object({
     .optional(),
 });
 
-const RATE_WINDOW_MS = 60_000;
-const RATE_MAX = 15;
-const ipHits = new Map<string, { count: number; resetAt: number }>();
-
-function rateLimit(ip: string): boolean {
-  const now = Date.now();
-  const entry = ipHits.get(ip);
-  if (!entry || now > entry.resetAt) {
-    ipHits.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
-    return true;
-  }
-  entry.count++;
-  return entry.count <= RATE_MAX;
-}
+const rateLimit = createRateLimiter(60_000, 15);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -37,10 +25,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const ip =
-    (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
-    req.socket.remoteAddress ||
-    'unknown';
+  const ip = getClientIp(req);
 
   if (!rateLimit(ip)) {
     return res.status(429).json({ error: 'Too many requests. Intenta de nuevo en un minuto.' });

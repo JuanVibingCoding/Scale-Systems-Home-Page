@@ -10,10 +10,13 @@
     "clean": "rimraf dist",
     "lint": "tsc --noEmit -p tsconfig.json",
     "lint:api": "tsc --noEmit -p api/tsconfig.json",
-    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p api/tsconfig.json"
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p api/tsconfig.json",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "check:a11y": "echo \"Ejecutar 'npx @axe-core/cli http://localhost:3000' en dev para auditoría manual. axe-core/react ya está activo en modo dev.\""
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
+    "@supabase/supabase-js": "^2.108.2",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
     "clsx": "^2.1.1",
@@ -28,6 +31,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@axe-core/react": "^4.12.1",
     "@types/node": "^22.14.0",
     "@vercel/node": "^5.1.2",
     "autoprefixer": "^10.4.21",

@@ -1,9 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export default function Navbar() {
+const navLinks = [
+  { name: 'Inicio', href: '/#inicio' },
+  { name: 'Servicios', href: '/#servicios' },
+  { name: 'Portafolio', href: '/#portafolio' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contacto', href: '/#contacto' },
+];
 
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,19 +21,19 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
-  // Custom scroll handler that first checks if we're on the homepage
-  // or navigates to root with hash using Link/a-tag
-  const handleNavClick = () => {
-    setIsMobileMenuOpen(false);
-  }
 
-  const navLinks = [
-    { name: 'Inicio', href: '/#inicio' },
-    { name: 'Servicios', href: '/#servicios' },
-    { name: 'Portafolio', href: '/#portafolio' },
-    { name: 'Contacto', href: '/#contacto' },
-  ];
+  const handleNavClick = useCallback(() => {
+    setIsMobileMenuOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isMobileMenuOpen]);
 
   return (
     <header
@@ -36,11 +43,10 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex items-center justify-between">
         <a href="/#inicio" className="flex items-center group transition-transform hover:scale-105">
-          <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems Logo" className="h-7 md:h-9 w-auto" />
+          <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems" className="h-7 md:h-9 w-auto" />
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav aria-label="Navegación principal" className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.name}>
@@ -61,20 +67,23 @@ export default function Navbar() {
           </a>
         </nav>
 
-        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-scale-text"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+          className="md:hidden text-scale-text p-2"
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
+          aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
+            id="mobile-menu"
+            role="dialog"
+            aria-label="Navegación móvil"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

@@ -73,7 +73,7 @@ const HeroCard = ({ onClick }: { onClick: () => void }) => {
         if (isAgentReady) {
           setIsReady(true);
         } else {
-          console.error("No se pudo inicializar el agente. Verifica tu VITE_GEMINI_API_KEY.");
+          console.error("No se pudo inicializar el agente. Verifica que el endpoint /api/chat esté disponible.");
         }
       }, remainingTime);
     };

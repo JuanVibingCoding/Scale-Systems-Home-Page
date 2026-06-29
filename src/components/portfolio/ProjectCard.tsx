@@ -37,6 +37,8 @@ export function ProjectCard({ project, isActive, isDimmed, onHover }: ProjectCar
         <img
           src={project.image}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 ease-in-out group-hover:opacity-40"
           draggable={false}
         />

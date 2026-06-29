@@ -6,8 +6,6 @@
   font-display: swap;
 }
 
-@import "tailwindcss";
-
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-logo: "29LT Bukra Bold", system-ui, sans-serif;

@@ -86,8 +86,7 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav aria-label="Navegación principal" className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.name}>
@@ -114,17 +113,17 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-scale-text"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+          className="md:hidden text-scale-text p-2"
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
+          aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

@@ -1,11 +1,17 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePrefersReducedMotion } from '@/lib/use-prefers-reduced-motion';
 
 export function ParticlesBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isRunningRef = useRef(true);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -36,6 +42,11 @@ export function ParticlesBackground() {
     };
 
     const draw = () => {
+      if (!isRunningRef.current) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((p) => {
@@ -54,6 +65,14 @@ export function ParticlesBackground() {
       animationFrameId = requestAnimationFrame(draw);
     };
 
+    const observer = new IntersectionObserver(([entry]) => {
+      isRunningRef.current = entry.isIntersecting;
+    }, { threshold: 0 });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
     window.addEventListener('resize', resize);
     resize();
     draw();
@@ -61,13 +80,20 @@ export function ParticlesBackground() {
     return () => {
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
     };
-  }, []);
+  }, [prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return null;
+  }
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none opacity-40 z-0"
-    />
+    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0">
+      <canvas
+        ref={canvasRef}
+        className="opacity-40 w-full h-full"
+      />
+    </div>
   );
 }

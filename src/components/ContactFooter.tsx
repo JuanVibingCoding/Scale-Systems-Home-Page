@@ -54,56 +54,131 @@ export default function ContactFooter() {
             <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-scale-muted">Nombre Completo</label>
+                  <label htmlFor="name" className="text-sm font-medium text-scale-muted">Nombre Completo <span className="text-red-400">*</span></label>
                   <input
                     type="text"
                     id="name"
-                    className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    onBlur={handleBlur}
+                    className={inputClass('name')}
                     placeholder="Ej. Carlos Pérez"
+                    aria-invalid={!!fieldErrors.name}
+                    aria-describedby={fieldErrors.name ? 'error-name' : undefined}
+                    aria-required="true"
+                    required
                   />
+                  {fieldErrors.name && <p id="error-name" className="text-red-400 text-xs mt-1">{fieldErrors.name}</p>}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="company" className="text-sm font-medium text-scale-muted">Empresa</label>
                   <input
                     type="text"
                     id="company"
-                    className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text placeholder-scale-muted focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
                     placeholder="Tu empresa C.A."
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-scale-muted">Correo Electrónico</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
-                  placeholder="carlos@empresa.com"
-                />
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-scale-muted">Correo Electrónico <span className="text-red-400">*</span></label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onBlur={handleBlur}
+                    className={inputClass('email')}
+                    placeholder="carlos@empresa.com"
+                    aria-invalid={!!fieldErrors.email}
+                    aria-describedby={fieldErrors.email ? 'error-email' : undefined}
+                    aria-required="true"
+                    required
+                  />
+                  {fieldErrors.email && <p id="error-email" className="text-red-400 text-xs mt-1">{fieldErrors.email}</p>}
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="text-sm font-medium text-scale-muted">Teléfono</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text placeholder-scale-muted focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
+                    placeholder="+58 412 123 4567"
+                  />
+                </div>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="service" className="text-sm font-medium text-scale-muted">¿Qué necesitas?</label>
                 <select
                   id="service"
+                  value={service}
+                  onChange={(e) => setService(e.target.value)}
                   className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all appearance-none"
                 >
-                  <option value="">Selecciona una opción</option>
-                  <option value="web">Diseño Web Vanguardista</option>
-                  <option value="automation">Automatización Pro</option>
-                  <option value="chatbot">AI Chatbots</option>
-                  <option value="all">Consultoría Integral</option>
+                  {CATALOG_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
                 </select>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium text-scale-muted">Mensaje <span className="text-red-400">*</span></label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onBlur={handleBlur}
+                  rows={4}
+                  className={inputClass('message')}
+                  placeholder="Cuéntanos sobre tu proyecto o lo que necesitas..."
+                  aria-invalid={!!fieldErrors.message}
+                  aria-describedby={fieldErrors.message ? 'error-message' : undefined}
+                  aria-required="true"
+                  required
+                />
+                {fieldErrors.message && <p id="error-message" className="text-red-400 text-xs mt-1">{fieldErrors.message}</p>}
+              </div>
+
+              <div aria-hidden="true" className="absolute opacity-0 pointer-events-none -z-50" tabIndex={-1}>
+                <input type="text" name="_hp" value="" onChange={() => {}} autoComplete="off" />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-scale-accent hover:bg-scale-accent-hover text-scale-bg font-bold px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg transition-all duration-300 shadow-[0_0_20px_rgba(3,250,110,0.3)] hover:shadow-[0_0_30px_rgba(3,250,110,0.5)] mt-4"
+                disabled={formState === 'loading'}
+                className="w-full flex items-center justify-center gap-2 bg-scale-accent hover:bg-scale-accent-hover disabled:bg-scale-accent/50 disabled:cursor-not-allowed text-scale-bg font-bold px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg transition-all duration-300 shadow-[0_0_20px_rgba(3,250,110,0.3)] hover:shadow-[0_0_30px_rgba(3,250,110,0.5)] mt-4"
               >
-                Enviar Solicitud
-                <ArrowRight size={20} />
+                {formState === 'loading' ? (
+                  <><Loader2 size={20} className="animate-spin" /> Enviando...</>
+                ) : (
+                  <><ArrowRight size={20} /> Enviar Solicitud</>
+                )}
               </button>
+
+              <div aria-live="polite" className="mt-4">
+                {formState === 'success' && (
+                  <div className="flex items-center gap-2 text-scale-accent text-sm sm:text-base" role="status">
+                    <CheckCircle2 size={18} className="shrink-0" />
+                    <span>¡Solicitud enviada con éxito! Te contactaremos pronto.</span>
+                  </div>
+                )}
+                {formState === 'error' && serverError && (
+                  <div className="flex items-start gap-2 text-red-400 text-sm sm:text-base" role="alert">
+                    <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                    <span>{serverError}</span>
+                  </div>
+                )}
+              </div>
             </form>
           </div>
         </div>

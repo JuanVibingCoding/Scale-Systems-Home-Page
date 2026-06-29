@@ -8,53 +8,7 @@ import { Typewriter } from '@/components/ui/typewriter-text';
 import { sendMessage } from '@/lib/chat-api';
 import ReactMarkdown from 'react-markdown';
 
-const useGlobalMouse = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      setMousePos({ x, y });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-  return mousePos;
-};
-
-const RobotIcon = ({ mousePos, className = "", isDark = false }: { mousePos: {x: number, y: number}, className?: string, isDark?: boolean }) => {
-  const eyeOffsetX = mousePos.x * 4;
-  const eyeOffsetY = mousePos.y * 4;
-
-  const color = isDark ? "#171810" : "#03fa6e";
-  const bgColor = isDark ? "#03fa6e" : "transparent";
-
-  return (
-    <svg viewBox="0 0 48 48" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Antenna */}
-      <path d="M24 14V8H28" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      
-      {/* Head */}
-      <rect x="10" y="14" width="28" height="22" rx="6" stroke={color} strokeWidth="3" fill={bgColor} />
-      
-      {/* Ears */}
-      <path d="M6 25H10" stroke={color} strokeWidth="3" strokeLinecap="round" />
-      <path d="M38 25H42" stroke={color} strokeWidth="3" strokeLinecap="round" />
-      
-      {/* Eyes */}
-      <motion.rect 
-        x={18} y={21} width="3" height="8" rx="1.5" fill={color}
-        animate={{ x: eyeOffsetX, y: eyeOffsetY }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      />
-      <motion.rect 
-        x={27} y={21} width="3" height="8" rx="1.5" fill={color}
-        animate={{ x: eyeOffsetX, y: eyeOffsetY }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      />
-    </svg>
-  );
-};
+const ChatWindow = lazy(() => import('./ChatWindow'));
 
 const HeroCard = ({ onClick }: { onClick: () => void }) => {
   const mousePos = useGlobalMouse();
@@ -277,14 +231,6 @@ const StickyIcon = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
-const ChatWindow = ({ onClose }: { onClose: () => void }) => {
-  const mousePos = useGlobalMouse();
-  const [messages, setMessages] = useState([
-    { id: 1, text: "👋 Hola, soy Scale, el asistente virtual de Scale Systems. ¿En qué puedo ayudarte hoy?", sender: 'ai' }
-  ]);
-  const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -584,7 +530,9 @@ export default function Hero() {
 
       <AnimatePresence>
         {isChatOpen && (
-          <ChatWindow onClose={() => setIsChatOpen(false)} />
+          <Suspense fallback={null}>
+            <ChatWindow onClose={() => setIsChatOpen(false)} />
+          </Suspense>
         )}
       </AnimatePresence>
     </section>

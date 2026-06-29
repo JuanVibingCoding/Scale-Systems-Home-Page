@@ -40,11 +40,13 @@ export default function Navbar() {
       setIsMobileMenuOpen(false);
 
       if (href.startsWith('/#')) {
+        e.preventDefault();
         const hash = href.slice(2);
         if (pathname === '/') {
-          e.preventDefault();
           scrollToHash(hash);
           window.history.pushState(null, '', `/#${hash}`);
+        } else {
+          window.location.href = href;
         }
       }
     },
@@ -55,6 +57,9 @@ export default function Navbar() {
     if (href === '/#servicios') {
       return pathname.startsWith('/servicio');
     }
+    if (href === '/blog') {
+      return pathname.startsWith('/blog');
+    }
     return pathname === '/' && window.location.hash === href.slice(1);
   };
 
@@ -62,6 +67,7 @@ export default function Navbar() {
     {name: 'Inicio', href: '/#inicio'},
     {name: 'Servicios', href: '/#servicios'},
     {name: 'Portafolio', href: '/#portafolio'},
+    {name: 'Blog', href: '/blog'},
     {name: 'Contacto', href: '/#contacto'},
   ];
 

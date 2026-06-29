@@ -1,3 +1,5 @@
+import { NextRequest } from 'next/server';
+
 const store = new Map<string, { count: number; resetAt: number }>();
 
 export function createRateLimiter(windowMs: number, maxRequests: number) {
@@ -13,10 +15,14 @@ export function createRateLimiter(windowMs: number, maxRequests: number) {
   };
 }
 
-export function getClientIp(req: { headers: Record<string, string | string[] | undefined>; socket: { remoteAddress?: string } }): string {
-  const forwarded = req.headers['x-forwarded-for'];
-  if (typeof forwarded === 'string') {
+export function getClientIp(req: NextRequest): string {
+  const forwarded = req.headers.get('x-forwarded-for');
+  if (forwarded) {
     return forwarded.split(',')[0]?.trim() || 'unknown';
   }
-  return req.socket.remoteAddress || 'unknown';
+  const realIp = req.headers.get('x-real-ip');
+  if (realIp) {
+    return realIp;
+  }
+  return 'unknown';
 }

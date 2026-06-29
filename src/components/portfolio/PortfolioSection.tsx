@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useCallback, useLayoutEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { projectsData } from './data/projects';
 import { ProjectCard } from './ProjectCard';

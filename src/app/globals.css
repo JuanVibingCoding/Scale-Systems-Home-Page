@@ -36,13 +36,37 @@
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+    background-color: color-mix(in srgb, white 5%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, white 10%, transparent);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
   }
   .glass-card {
-    @apply bg-[#1f2017]/80 backdrop-blur-md border border-[#2a2c1f];
+    background-color: color-mix(in srgb, #1f2017 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid #2a2c1f;
   }
   .glow-border {
-    @apply relative before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-br before:from-[#03fa6e]/50 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500;
+    position: relative;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(to bottom right, color-mix(in srgb, #03fa6e 50%, transparent), transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .glow-border:hover::before {
+    opacity: 1;
   }
 }
 

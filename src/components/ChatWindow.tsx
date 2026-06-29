@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { Send, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
-import { sendMessage } from '@/lib/chat-agent';
+import { sendMessage } from '@/lib/chat-api';
 import { useGlobalMouse } from '@/lib/use-global-mouse';
 import { RobotIcon } from '@/components/ui/robot-icon';
 

@@ -1,15 +1,151 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react';
+import { Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
 
+const CATALOG_OPTIONS = [
+  { value: '', label: 'Selecciona una opción' },
+  { value: 'web-dev', label: 'Desarrollo Web' },
+  { value: 'automation', label: 'Automatización de Procesos' },
+  { value: 'ai-agents', label: 'Agentes de IA' },
+  { value: 'consulting', label: 'Consultoría en IA' },
+  { value: 'analytics', label: 'Analítica e Insights' },
+] as const;
+
+type FormState = 'idle' | 'loading' | 'success' | 'error';
+
+interface FieldErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+function validateField(name: string, value: string): string | undefined {
+  switch (name) {
+    case 'name':
+      return value.trim().length < 2 ? 'El nombre debe tener al menos 2 caracteres' : undefined;
+    case 'email':
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? undefined : 'Correo electrónico inválido';
+    case 'message':
+      return value.trim().length < 10 ? 'El mensaje debe tener al menos 10 caracteres' : undefined;
+    default:
+      return undefined;
+  }
+}
+
+function getUtmParams() {
+  if (typeof window === 'undefined') {
+    return { utm_source: '', utm_medium: '', utm_campaign: '', utm_term: '', utm_content: '' };
+  }
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source') ?? '',
+    utm_medium: params.get('utm_medium') ?? '',
+    utm_campaign: params.get('utm_campaign') ?? '',
+    utm_term: params.get('utm_term') ?? '',
+    utm_content: params.get('utm_content') ?? '',
+  };
+}
+
+function getPageSource() {
+  if (typeof window === 'undefined') return '';
+  const referrer = document.referrer || '';
+  const path = window.location.pathname;
+  if (referrer && !referrer.includes(window.location.hostname)) {
+    return `referral: ${new URL(referrer).hostname}`;
+  }
+  return path !== '/' ? path : '';
+}
+
 export default function ContactFooter() {
-  const [year, setYear] = useState(2025);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [phone, setPhone] = useState('');
+  const [service, setService] = useState('');
+  const [message, setMessage] = useState('');
+  const [formState, setFormState] = useState<FormState>('idle');
+  const [serverError, setServerError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+  const [utm, setUtm] = useState({ utm_source: '', utm_medium: '', utm_campaign: '', utm_term: '', utm_content: '' });
+  const [pageSource, setPageSource] = useState('');
 
   useEffect(() => {
-    setYear(new Date().getFullYear());
+    setUtm(getUtmParams());
+    setPageSource(getPageSource());
   }, []);
+
+  function handleBlur(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name: fieldName, value } = e.target;
+    const error = validateField(fieldName, value);
+    setFieldErrors((prev) => ({ ...prev, [fieldName]: error }));
+  }
+
+  function validateAll(): boolean {
+    const errors: FieldErrors = {
+      name: validateField('name', name),
+      email: validateField('email', email),
+      message: validateField('message', message),
+    };
+    const clean = Object.fromEntries(Object.entries(errors).filter(([_, v]) => v !== undefined));
+    setFieldErrors(clean);
+    return Object.keys(clean).length === 0;
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setServerError('');
+
+    if (!validateAll()) return;
+
+    setFormState('loading');
+
+    const body = {
+      name: name.trim(),
+      email: email.trim(),
+      company: company.trim() || undefined,
+      phone: phone.trim() || undefined,
+      service: service || undefined,
+      message: message.trim(),
+      _hp: '',
+      ...utm,
+      source: pageSource || undefined,
+    };
+
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setServerError(data.error || 'Error al enviar la solicitud.');
+        setFormState('error');
+        return;
+      }
+
+      setFormState('success');
+      setName('');
+      setEmail('');
+      setCompany('');
+      setPhone('');
+      setService('');
+      setMessage('');
+    } catch {
+      setServerError('Error de conexión. Verifica tu internet e intenta de nuevo.');
+      setFormState('error');
+    }
+  }
+
+  function inputClass(field: keyof FieldErrors) {
+    const hasError = fieldErrors[field];
+    return `w-full bg-scale-bg border ${hasError ? 'border-red-500' : 'border-scale-border'} rounded-xl px-4 py-3 text-scale-text placeholder-scale-muted focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all`;
+  }
 
   return (
     <footer id="contacto" className="bg-scale-bg py-16 sm:py-32 relative border-t border-scale-border">
@@ -51,7 +187,7 @@ export default function ContactFooter() {
 
             <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Solicitar Presupuesto</h3>
 
-            <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form aria-label="Formulario de solicitud de presupuesto" className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-scale-muted">Nombre Completo <span className="text-red-400">*</span></label>
@@ -188,8 +324,8 @@ export default function ContactFooter() {
         <div className="flex justify-center md:justify-start">
           <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems Logo" className="h-7 md:h-9 w-auto" />
         </div>
-        <p className="text-sm text-scale-muted" suppressHydrationWarning>
-          © {year} Scale Systems. Todos los derechos reservados.
+        <p className="text-sm text-scale-muted">
+          © {new Date().getFullYear()} Scale Systems. Todos los derechos reservados.
         </p>
       </div>
     </footer>

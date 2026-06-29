@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import type { BlogPost } from '@/lib/blog';
 
 export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Link
-      to={`/blog/${post.slug}`}
+      href={`/blog/${post.slug}`}
       className="group block bg-[#1f2017] border border-[#2a2c1f] rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-[#03fa6e]/30 hover:shadow-[0_0_30px_rgba(3,250,110,0.05)]"
     >
       <div className="flex flex-wrap gap-2 mb-4">

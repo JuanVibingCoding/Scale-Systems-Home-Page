@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { BlogCard } from '@/components/blog/BlogCard';
 
-const SITE_URL = 'https://scalesystems.com.ve';
-
 export const metadata: Metadata = {
   title: 'Blog — IA y Automatización para Empresas en Venezuela',
   description:

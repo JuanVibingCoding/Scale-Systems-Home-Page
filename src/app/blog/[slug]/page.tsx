@@ -6,8 +6,6 @@ import type { Metadata } from 'next';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import type { Components } from 'react-markdown';
 
-const SITE_URL = 'https://scalesystems.com.ve';
-
 const markdownComponents: Components = {
   h1: ({ children, ...props }) => (
     <h1 className="text-3xl sm:text-4xl font-bold text-white mt-12 mb-6 leading-tight" {...props}>{children}</h1>
@@ -93,13 +91,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: post.title,
     description: post.description,
     openGraph: {
+      type: 'article',
       title: post.title,
       description: post.description,
-      type: 'article',
       url: `/blog/${post.slug}`,
-      images: post.ogImage ? [{ url: post.ogImage }] : [],
+      publishedTime: post.date,
+      tags: post.tags,
+      images: post.ogImage ? [{url: post.ogImage}] : [],
     },
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: {canonical: `/blog/${post.slug}`},
   };
 }
 
@@ -114,6 +114,26 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <section className="min-h-screen bg-[#171810] pt-32 pb-20">
       <article className="max-w-3xl mx-auto px-5 sm:px-8">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Article',
+              headline: post.title,
+              description: post.description,
+              datePublished: post.date,
+              author: {
+                '@type': 'Organization',
+                name: 'Scale Systems',
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'Scale Systems',
+              },
+            }),
+          }}
+        />
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-[#a1a1aa] hover:text-[#03fa6e] transition-colors mb-8 text-sm font-mono"

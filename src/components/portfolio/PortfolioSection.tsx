@@ -9,7 +9,7 @@ import { ParticlesBackground } from './ParticlesBackground';
 export function PortfolioSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null);
-  const [dimensions, setDimensions] = useState({ contentWidth: 0, viewportWidth: window.innerWidth });
+  const [dimensions, setDimensions] = useState({ contentWidth: 0, viewportWidth: 0 });
 
   const measure = useCallback(() => {
     const content = document.getElementById('portfolio-track');

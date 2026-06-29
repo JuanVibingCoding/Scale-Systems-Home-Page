@@ -60,7 +60,9 @@ export default function Navbar() {
     if (href === '/blog') {
       return pathname.startsWith('/blog');
     }
-    return pathname === '/' && window.location.hash === href.slice(1);
+    if (pathname !== '/') return false;
+    if (typeof window === 'undefined') return false;
+    return window.location.hash === href.slice(1);
   };
 
   const navLinks = [
@@ -87,7 +89,7 @@ export default function Navbar() {
         >
           <img
             src="/logos/ScaleSystemsLogo250.png"
-            alt="Scale Systems Logo"
+            alt="Scale Systems - Agencia de Automatización e IA en Venezuela"
             className="h-7 md:h-9 w-auto"
           />
         </Link>

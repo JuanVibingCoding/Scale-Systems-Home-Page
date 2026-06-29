@@ -1,10 +1,17 @@
 import type {Metadata} from 'next';
+import {Inter} from 'next/font/google';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 
+const inter = Inter({subsets: ['latin'], display: 'swap'});
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.com';
+
 export const metadata: Metadata = {
   title: {
-    default: 'Scale Systems | Automatización e IA para empresas en Venezuela',
+    default:
+      'Automatización e IA para Empresas en Venezuela | Scale Systems',
     template: '%s | Scale Systems',
   },
   description:
@@ -19,14 +26,12 @@ export const metadata: Metadata = {
     'CRM',
     'WhatsApp bot',
   ],
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.com'
-  ),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: 'website',
     locale: 'es_VE',
     siteName: 'Scale Systems',
-    title: 'Scale Systems | Automatización e IA para empresas en Venezuela',
+    title: 'Automatización e IA para Empresas en Venezuela | Scale Systems',
     description:
       'Agencia de automatización e inteligencia artificial. Diseñamos sistemas que trabajan por ti 24/7.',
     images: [
@@ -34,7 +39,7 @@ export const metadata: Metadata = {
         url: '/logos/ScaleSystemsLogo250.png',
         width: 250,
         height: 250,
-        alt: 'Scale Systems Logo',
+        alt: 'Logo de Scale Systems - Agencia de Automatización e IA en Venezuela',
       },
     ],
   },
@@ -56,24 +61,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Scale Systems',
+    url: SITE_URL,
+    logo: `${SITE_URL}/logos/ScaleSystemsLogo250.png`,
+    description:
+      'Agencia de automatización e inteligencia artificial en Venezuela.',
+    areaServed: {
+      '@type': 'Country',
+      name: 'Venezuela',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: 'hola@scalesystems.com.ve',
+      telephone: '+58-412-123-4567',
+      contactType: 'customer service',
+    },
+  };
+
   return (
     <html lang="es" className="h-full antialiased">
       <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
       </head>
-      <body className="min-h-screen bg-scale-bg text-scale-text font-sans selection:bg-scale-accent selection:text-scale-bg flex flex-col">
+      <body
+        className={`min-h-screen bg-scale-bg text-scale-text font-sans selection:bg-scale-accent selection:text-scale-bg flex flex-col ${inter.className}`}
+      >
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

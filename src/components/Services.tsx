@@ -1,6 +1,6 @@
 import { Code2, Settings, Bot, ArrowRight } from 'lucide-react';
 import { BlurredStagger } from './ui/blurred-stagger-text';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 
 export default function Services() {
@@ -48,7 +48,7 @@ export default function Services() {
 
         <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 cursor-pointer">
           {services.map((service, index) => (
-            <Link to={`/servicio/${service.id}`} key={index}>
+            <Link href={`/servicio/${service.id}`} key={index}>
               <motion.div
                 whileHover={{ y: -8, scale: 1.02 }}
                 whileTap={{ scale: 0.95 }}

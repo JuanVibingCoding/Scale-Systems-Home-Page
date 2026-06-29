@@ -1,9 +1,11 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Cpu, Send, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ParticleEffectForHero from '@/components/ui/particle-effect-for-hero';
 import { Typewriter } from '@/components/ui/typewriter-text';
-import { sendMessage, initAgent } from '@/lib/chat-agent';
+import { sendMessage } from '@/lib/chat-api';
 import ReactMarkdown from 'react-markdown';
 
 const useGlobalMouse = () => {
@@ -61,24 +63,10 @@ const HeroCard = ({ onClick }: { onClick: () => void }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const init = async () => {
-      const startTime = Date.now();
-      const isAgentReady = await initAgent();
-      
-      // Mantenemos al menos 1.5s de carga por estética, pero esperamos lo que haga falta a la IA
-      const elapsedTime = Date.now() - startTime;
-      const remainingTime = Math.max(0, 1500 - elapsedTime);
-      
-      setTimeout(() => {
-        if (isAgentReady) {
-          setIsReady(true);
-        } else {
-          console.error("No se pudo inicializar el agente. Verifica tu VITE_GEMINI_API_KEY.");
-        }
-      }, remainingTime);
-    };
-
-    init();
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -309,7 +297,11 @@ const ChatWindow = ({ onClose }: { onClose: () => void }) => {
     setIsTyping(true);
 
     try {
-      const reply = await sendMessage(userText);
+      const history = messages.map((msg) => ({
+        role: msg.sender as 'user' | 'ai',
+        text: msg.text,
+      }));
+      const reply = await sendMessage(userText, history);
       setMessages(prev => [...prev, {
         id: Date.now() + 1,
         text: reply,

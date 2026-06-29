@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { projectsData } from './data/projects';

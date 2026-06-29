@@ -1,3 +1,5 @@
+'use client';
+
 import { Clock, Globe, MessageSquareWarning } from 'lucide-react';
 import { motion } from 'motion/react';
 import { BlurredStagger } from './ui/blurred-stagger-text';

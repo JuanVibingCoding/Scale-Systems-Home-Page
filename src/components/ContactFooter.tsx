@@ -1,6 +1,16 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
+
 export default function ContactFooter() {
+  const [year, setYear] = useState(2025);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer id="contacto" className="bg-scale-bg py-16 sm:py-32 relative border-t border-scale-border">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 grid lg:grid-cols-2 gap-12 lg:gap-20">
@@ -37,11 +47,10 @@ export default function ContactFooter() {
         <div className="relative rounded-3xl border border-scale-border shadow-2xl p-[1.5px] md:p-[2px]">
           <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} className="z-0" />
           <div className="relative z-10 bg-scale-card rounded-[calc(1.5rem-2px)] p-6 sm:p-10 overflow-hidden h-full pointer-events-auto">
-            {/* Subtle Glow */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-scale-accent rounded-full mix-blend-screen filter blur-[100px] opacity-10 pointer-events-none"></div>
-            
+
             <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Solicitar Presupuesto</h3>
-            
+
             <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
@@ -104,8 +113,8 @@ export default function ContactFooter() {
         <div className="flex justify-center md:justify-start">
           <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems Logo" className="h-7 md:h-9 w-auto" />
         </div>
-        <p className="text-sm text-scale-muted">
-          © {new Date().getFullYear()} Scale Systems. Todos los derechos reservados.
+        <p className="text-sm text-scale-muted" suppressHydrationWarning>
+          © {year} Scale Systems. Todos los derechos reservados.
         </p>
       </div>
     </footer>

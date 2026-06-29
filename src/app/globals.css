@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: "29LT Bukra Bold";
   src: url('/fonts/29LT-Bukra-Bold.ttf') format('truetype');

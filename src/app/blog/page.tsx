@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { BlogCard } from '@/components/blog/BlogCard';
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
+
 export const metadata: Metadata = {
   title: 'Blog — IA y Automatización para Empresas en Venezuela',
   description:
@@ -18,8 +21,32 @@ export const metadata: Metadata = {
 export default function BlogIndexPage() {
   const posts = getAllPosts();
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Inicio',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+      },
+    ],
+  };
+
   return (
     <section className="min-h-screen bg-[#171810] pt-32 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="mb-12 sm:mb-16">
           <p className="text-[#03fa6e] font-mono text-sm tracking-widest uppercase mb-3">

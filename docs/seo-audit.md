@@ -1,17 +1,18 @@
-# Auditoría SEO — ScaleSystems.com
+# Auditoría SEO — ScaleSystems.dev
 
 **Fecha:** 2026-06-29
 **Auditor:** opencode (SEO Audit Skill)
 **Stack:** Next.js 15, Tailwind CSS, Supabase, Vercel
-**Última actualización:** 2026-06-29 (post-correcciones on-page)
+**Dominio:** scalesystems.dev
+**Última actualización:** 2026-06-29 (post-fase 2)
 
 ---
 
 ## Resumen Ejecutivo
 
-**Salud General: MEDIA** — Se implementaron todas las correcciones on-page posibles. El contenido SEO-critical ahora se renderiza en servidor.
+**Salud General: ALTA** — Fase 1 y 2 completadas. Dominio conectado, schemas implementados, internal linking activo.
 
-### Estado de Correcciones On-Page
+### Estado de Correcciones
 
 | # | Tarea | Estado |
 |---|-------|--------|
@@ -29,17 +30,21 @@
 | 12 | Agregar noindex al 404 | ✅ Hecho |
 | 13 | Mejorar alt text de imágenes (logo) | ✅ Hecho |
 | 14 | Configurar `images.formats` para WebP/AVIF | ✅ Hecho |
+| 15 | Conectar dominio scalesystems.dev | ✅ Hecho |
+| 16 | Configurar redirect www → apex (301) | ✅ Hecho |
+| 17 | Actualizar fallback URLs a scalesystems.dev | ✅ Hecho |
+| 18 | Agregar WebSite schema con SearchAction | ✅ Hecho |
+| 19 | Agregar BreadcrumbList schema | ✅ Hecho |
+| 20 | Internal linking blog ↔ servicios | ✅ Hecho |
 
-### Pendiente (Requiere decisión del cliente)
+### Pendiente (Fase 3)
 
 | # | Tarea | Notas |
 |---|-------|-------|
-| 15 | Resolver inconsistencia de dominio | **PENDIENTE** — Cliente indica que usan default de Vercel por ahora |
-| 16 | Integrar Google Search Console | **PENDIENTE** — Cuenta no creada aún |
-| 17 | Agregar BreadcrumbList schema | **PENDIENTE** — Fase 2 |
-| 18 | Agregar contenido a páginas de servicio | **PENDIENTE** — Fase 2 |
-| 19 | Crear más blog posts (topical cluster) | **PENDIENTE** — Fase 2 |
-| 20 | Internal linking strategy blog ↔ servicios | **PENDIENTE** — Fase 2 |
+| 21 | Integrar Google Search Console | Cuenta no creada aún |
+| 22 | Expandir contenido en páginas de servicio | FAQs, proceso de trabajo, resultados |
+| 23 | Crear más blog posts (topical cluster IA + Venezuela) | 3 posts planificados |
+| 24 | Convertir `<img>` a `<Image>` de next/image | Lazy loading automático |
 
 ---
 
@@ -182,12 +187,16 @@ Agregado `formats: ['image/avif', 'image/webp']` en `next.config.ts`.
 ### Fase 1 — Completada ✅
 Todas las correcciones on-page implementadas y verificadas con `npm run build`.
 
-### Fase 2 — Pendiente
-1. ⏸ Resolver dominio definitivo (cliente pendiente)
-2. ⏸ Integrar Google Search Console
-3. ⏸ Agregar BreadcrumbList schema
-4. ⏸ Agregar WebSite schema (sitelinks searchbox)
-5. ⏸ Agregar contenido a páginas de servicio (FAQs, comparaciones)
-6. ⏸ Crear más blog posts (topical cluster IA + Venezuela)
-7. ⏸ Internal linking strategy blog ↔ servicios
-8. ⏸ Convertir `<img>` a `<Image>` de next/image
+### Fase 2 — Completada ✅
+1. ✅ Conectar dominio scalesystems.dev
+2. ✅ Configurar redirect www → apex (301)
+3. ✅ Actualizar fallback URLs a scalesystems.dev
+4. ✅ Agregar WebSite schema con SearchAction
+5. ✅ Agregar BreadcrumbList schema a servicios y blog
+6. ✅ Internal linking blog ↔ servicios
+
+### Fase 3 — Pendiente
+1. ⏸ Integrar Google Search Console
+2. ⏸ Expandir contenido en páginas de servicio (FAQs, comparaciones)
+3. ⏸ Crear más blog posts (topical cluster IA + Venezuela)
+4. ⏸ Convertir `<img>` a `<Image>` de next/image

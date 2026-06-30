@@ -2,7 +2,7 @@ import type {MetadataRoute} from 'next';
 import {getAllPosts} from '@/lib/blog';
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.com';
+  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts().map((post) => ({

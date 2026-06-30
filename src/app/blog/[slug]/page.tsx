@@ -6,6 +6,9 @@ import type { Metadata } from 'next';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import type { Components } from 'react-markdown';
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
+
 const markdownComponents: Components = {
   h1: ({ children, ...props }) => (
     <h1 className="text-3xl sm:text-4xl font-bold text-white mt-12 mb-6 leading-tight" {...props}>{children}</h1>
@@ -119,6 +122,34 @@ export default async function BlogPostPage({ params }: PageProps) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Inicio',
+                  item: SITE_URL,
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Blog',
+                  item: `${SITE_URL}/blog`,
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: post.title,
+                },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
               '@type': 'Article',
               headline: post.title,
               description: post.description,
@@ -172,6 +203,35 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.content}
           </ReactMarkdown>
         </div>
+
+        {post.relatedService && (
+          <div className="mt-16 pt-8 border-t border-[#2a2c1f]">
+            <p className="text-[#63635d] text-sm font-mono uppercase tracking-wider mb-4">
+              Servicio relacionado
+            </p>
+            <Link
+              href={`/servicio/${post.relatedService}`}
+              className="group block bg-[#1f2017] border border-[#2a2c1f] rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-[#03fa6e]/30 hover:shadow-[0_0_30px_rgba(3,250,110,0.05)]"
+            >
+              <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#03fa6e] transition-colors duration-300 mb-2">
+                {post.relatedService === 'chatbots' && 'AI Chatbots'}
+                {post.relatedService === 'diseno-web' && 'Diseño Web Vanguardista'}
+                {post.relatedService === 'automatizacion' && 'Automatización Pro'}
+              </h3>
+              <p className="text-[#a1a1aa] text-sm leading-relaxed">
+                {post.relatedService === 'chatbots' &&
+                  'Entrenamos agentes de IA para responder dudas, agendar citas y cerrar ventas 24/7.'}
+                {post.relatedService === 'diseno-web' &&
+                  'Creamos sitios web ultrarrápidos, con diseño premium y enfocados en conversiones.'}
+                {post.relatedService === 'automatizacion' &&
+                  'Conectamos tus herramientas para que trabajen de forma sincronizada y sin intervención humana.'}
+              </p>
+              <span className="inline-flex items-center gap-1 text-[#03fa6e] text-sm font-semibold mt-3 group-hover:gap-2 transition-all">
+                Ver servicio →
+              </span>
+            </Link>
+          </div>
+        )}
       </article>
     </section>
   );

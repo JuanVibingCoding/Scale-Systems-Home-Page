@@ -6,7 +6,7 @@ import ClientLayout from '@/components/ClientLayout';
 const inter = Inter({subsets: ['latin'], display: 'swap'});
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.com';
+  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
 
 export const metadata: Metadata = {
   title: {
@@ -81,6 +81,18 @@ export default function RootLayout({
     },
   };
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Scale Systems',
+    url: SITE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE_URL}/blog?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   return (
     <html lang="es" className="h-full antialiased">
       <head>
@@ -88,6 +100,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
           }}
         />
       </head>

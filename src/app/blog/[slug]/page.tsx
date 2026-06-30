@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import type { Metadata } from 'next';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import type { Components } from 'react-markdown';
@@ -148,7 +149,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <div className="prose-custom">
-          <ReactMarkdown components={markdownComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
             {post.content}
           </ReactMarkdown>
         </div>

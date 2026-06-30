@@ -71,8 +71,12 @@ export default function ContactFooter() {
 
   const [utm, setUtm] = useState({ utm_source: '', utm_medium: '', utm_campaign: '', utm_term: '', utm_content: '' });
   const [pageSource, setPageSource] = useState('');
+  const [mounted, setMounted] = useState(false);
+  const [currentYear, setCurrentYear] = useState(2026);
 
   useEffect(() => {
+    setMounted(true);
+    setCurrentYear(new Date().getFullYear());
     setUtm(getUtmParams());
     setPageSource(getPageSource());
   }, []);
@@ -187,6 +191,7 @@ export default function ContactFooter() {
 
             <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Solicitar Presupuesto</h3>
 
+            {mounted ? (
             <form aria-label="Formulario de solicitud de presupuesto" className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
@@ -316,6 +321,21 @@ export default function ContactFooter() {
                 )}
               </div>
             </form>
+            ) : (
+              <div className="space-y-4 sm:space-y-6 animate-pulse">
+                <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-2"><div className="h-4 w-24 bg-scale-border rounded" /><div className="h-12 bg-scale-border rounded-xl" /></div>
+                  <div className="space-y-2"><div className="h-4 w-20 bg-scale-border rounded" /><div className="h-12 bg-scale-border rounded-xl" /></div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-2"><div className="h-4 w-32 bg-scale-border rounded" /><div className="h-12 bg-scale-border rounded-xl" /></div>
+                  <div className="space-y-2"><div className="h-4 w-20 bg-scale-border rounded" /><div className="h-12 bg-scale-border rounded-xl" /></div>
+                </div>
+                <div className="space-y-2"><div className="h-4 w-28 bg-scale-border rounded" /><div className="h-12 bg-scale-border rounded-xl" /></div>
+                <div className="space-y-2"><div className="h-4 w-20 bg-scale-border rounded" /><div className="h-24 bg-scale-border rounded-xl" /></div>
+                <div className="h-12 bg-scale-accent/30 rounded-xl" />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -325,7 +345,7 @@ export default function ContactFooter() {
           <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems - Agencia de Automatización e IA en Venezuela" className="h-7 md:h-9 w-auto" />
         </div>
         <p className="text-sm text-scale-muted">
-          © {new Date().getFullYear()} Scale Systems. Todos los derechos reservados.
+          © {currentYear} Scale Systems. Todos los derechos reservados.
         </p>
       </div>
     </footer>

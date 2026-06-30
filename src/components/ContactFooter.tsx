@@ -167,7 +167,7 @@ export default function ContactFooter() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card">
                 <Mail size={18} className="sm:w-5 sm:h-5" />
               </div>
-              <span className="text-base sm:text-lg font-medium break-all">hola@scalesystems.com.ve</span>
+              <span className="text-base sm:text-lg font-medium break-all">ventas@scalesystems.dev</span>
             </div>
             <div className="flex items-center gap-4 text-scale-muted hover:text-scale-accent transition-colors">
               <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card">
@@ -179,7 +179,7 @@ export default function ContactFooter() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card">
                 <MapPin size={18} className="sm:w-5 sm:h-5" />
               </div>
-              <span className="text-base sm:text-lg font-medium">Caracas, Venezuela</span>
+              <span className="text-base sm:text-lg font-medium">Valencia, Venezuela</span>
             </div>
           </div>
         </div>

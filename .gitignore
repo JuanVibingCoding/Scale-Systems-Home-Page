@@ -10,6 +10,9 @@ build/
 dist/
 coverage/
 
+# typescript
+tsconfig.tsbuildinfo
+
 # misc
 .DS_Store
 *.log
@@ -23,3 +26,4 @@ coverage/
 
 # OpenCode
 AGENTS.md 
+SKILL.md

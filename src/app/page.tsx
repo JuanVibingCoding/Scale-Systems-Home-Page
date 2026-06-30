@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Scale Systems | Automatización e IA para empresas en Venezuela',
+    title:
+      'Automatización e IA para Empresas en Venezuela | Scale Systems',
     description:
       'Escala tu empresa en Venezuela con Inteligencia Artificial y Automatización.',
     url: '/',

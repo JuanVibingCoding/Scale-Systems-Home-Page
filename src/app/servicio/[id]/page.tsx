@@ -1,6 +1,11 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
+import Link from 'next/link';
 import ServiceLandingPage from '@/components/ServiceLandingPage';
+import {getAllPosts} from '@/lib/blog';
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
 
 const servicesData: Record<
   string,
@@ -75,9 +80,40 @@ export default async function ServicePage({params}: Props) {
   }
 
   const data = servicesData[id];
+  const relatedPosts = getAllPosts().filter(
+    (post) => post.relatedService === id
+  );
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Inicio',
+                item: SITE_URL,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Servicios',
+                item: `${SITE_URL}/#servicios`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: data.title,
+              },
+            ],
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -104,6 +140,40 @@ export default async function ServicePage({params}: Props) {
         desc={data.desc}
         whatsappText={data.whatsappText}
       />
+
+      {relatedPosts.length > 0 && (
+        <section className="bg-scale-bg py-16 sm:py-24 border-t border-scale-border">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+            <p className="text-scale-accent font-mono text-sm tracking-widest uppercase mb-3">
+              Artículos relacionados
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">
+              Aprende más sobre este servicio
+            </h2>
+            <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {relatedPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group block bg-scale-card border border-scale-border rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-scale-accent/30 hover:shadow-[0_0_30px_rgba(3,250,110,0.05)]"
+                >
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-scale-accent transition-colors duration-300 mb-3 leading-tight">
+                    {post.title}
+                  </h3>
+                  <p className="text-scale-muted text-sm leading-relaxed mb-4 line-clamp-3">
+                    {post.description}
+                  </p>
+                  <div className="flex items-center gap-4 text-xs text-[#63635d] font-mono">
+                    <span>{post.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-scale-border" />
+                    <span>{post.readingTime}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

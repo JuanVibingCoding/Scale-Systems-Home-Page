@@ -322,7 +322,7 @@ export default function ContactFooter() {
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 mt-16 sm:mt-32 pt-8 border-t border-scale-border flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
         <div className="flex justify-center md:justify-start">
-          <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems Logo" className="h-7 md:h-9 w-auto" />
+          <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems - Agencia de Automatización e IA en Venezuela" className="h-7 md:h-9 w-auto" />
         </div>
         <p className="text-sm text-scale-muted">
           © {new Date().getFullYear()} Scale Systems. Todos los derechos reservados.

@@ -25,25 +25,6 @@ export default function ServiceLandingPage({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: title,
-            description: subtitle,
-            provider: {
-              '@type': 'Organization',
-              name: 'Scale Systems',
-            },
-            areaServed: {
-              '@type': 'Country',
-              name: 'Venezuela',
-            },
-          }),
-        }}
-      />
       <motion.div
         initial={{opacity: 0, y: 20}}
         animate={{opacity: 1, y: 0}}

@@ -9,6 +9,7 @@ export interface BlogPost {
   tags: string[];
   ogImage?: string;
   readingTime: string;
+  relatedService?: string;
   content: string;
 }
 
@@ -19,6 +20,7 @@ interface Frontmatter {
   tags: string[];
   readingTime: string;
   ogImage?: string;
+  relatedService?: string;
 }
 
 function parseFrontmatter(raw: string): { frontmatter: Record<string, unknown>; content: string } {
@@ -66,6 +68,7 @@ function readAllPosts(): BlogPost[] {
       tags: Array.isArray(fm.tags) ? fm.tags : [],
       ogImage: fm.ogImage,
       readingTime: fm.readingTime || '',
+      relatedService: fm.relatedService || undefined,
       content,
     });
   }

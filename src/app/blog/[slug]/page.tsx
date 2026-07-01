@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import type { Metadata } from 'next';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import type { Components } from 'react-markdown';
@@ -185,6 +187,19 @@ export default async function BlogPostPage({ params }: PageProps) {
           ))}
         </div>
 
+        {post.featuredImage && (
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-8 border border-[#2a2c1f]">
+            <Image
+              src={post.featuredImage}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 768px"
+              priority
+            />
+          </div>
+        )}
+
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
           {post.title}
         </h1>
@@ -200,7 +215,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <div className="prose-custom">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
             {post.content}
           </ReactMarkdown>
         </div>

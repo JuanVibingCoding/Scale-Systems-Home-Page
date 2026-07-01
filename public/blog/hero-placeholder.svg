@@ -1,0 +1,9 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#1f2017"/>
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#2a2c1f" stroke-width="2"/>
+  <path d="M550 260 L600 210 L650 260 L700 210 L750 260" stroke="#03fa6e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="600" cy="300" r="20" stroke="#03fa6e" stroke-width="2" fill="none"/>
+  <circle cx="600" cy="300" r="7" fill="#03fa6e"/>
+  <text x="600" y="370" font-family="monospace" font-size="16" fill="#63635d" text-anchor="middle">IMAGEN DESTACADA</text>
+  <text x="600" y="395" font-family="monospace" font-size="14" fill="#63635d" text-anchor="middle">1200 × 630</text>
+</svg>

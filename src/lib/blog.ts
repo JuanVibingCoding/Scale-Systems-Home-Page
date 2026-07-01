@@ -7,6 +7,8 @@ export interface BlogPost {
   description: string;
   date: string;
   tags: string[];
+  thumbnail?: string;
+  featuredImage?: string;
   ogImage?: string;
   readingTime: string;
   relatedService?: string;
@@ -19,6 +21,8 @@ interface Frontmatter {
   date: string;
   tags: string[];
   readingTime: string;
+  thumbnail?: string;
+  featuredImage?: string;
   ogImage?: string;
   relatedService?: string;
 }
@@ -67,6 +71,8 @@ function readAllPosts(): BlogPost[] {
       description: fm.description || '',
       date: fm.date || '',
       tags: Array.isArray(fm.tags) ? fm.tags : [],
+      thumbnail: fm.thumbnail,
+      featuredImage: fm.featuredImage,
       ogImage: fm.ogImage,
       readingTime: fm.readingTime || '',
       relatedService: fm.relatedService || undefined,

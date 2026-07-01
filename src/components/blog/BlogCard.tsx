@@ -15,7 +15,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
             alt={post.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 384px"
           />
         </div>
       )}

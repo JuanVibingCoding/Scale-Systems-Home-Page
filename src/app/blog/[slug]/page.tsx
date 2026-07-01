@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
 import type { Metadata } from 'next';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import type { Components } from 'react-markdown';
@@ -215,7 +216,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <div className="prose-custom">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeSlug]} components={markdownComponents}>
             {post.content}
           </ReactMarkdown>
         </div>

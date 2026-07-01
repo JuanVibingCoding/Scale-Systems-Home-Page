@@ -9,6 +9,9 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/favicon.ico',
+  },
   title: {
     default:
       'Automatización e IA para Empresas en Venezuela | Scale Systems',

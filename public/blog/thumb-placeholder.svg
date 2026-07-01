@@ -1,0 +1,9 @@
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#1f2017"/>
+  <rect x="0" y="0" width="800" height="450" fill="none" stroke="#2a2c1f" stroke-width="2"/>
+  <path d="M350 180 L400 130 L450 180 L500 130 L550 180" stroke="#03fa6e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="400" cy="220" r="15" stroke="#03fa6e" stroke-width="2" fill="none"/>
+  <circle cx="400" cy="220" r="5" fill="#03fa6e"/>
+  <text x="400" y="280" font-family="monospace" font-size="14" fill="#63635d" text-anchor="middle">THUMBNAIL</text>
+  <text x="400" y="300" font-family="monospace" font-size="12" fill="#63635d" text-anchor="middle">800 × 450</text>
+</svg>

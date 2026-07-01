@@ -5,6 +5,8 @@ date: "2026-06-15"
 tags: ["IA", "Automatización", "Venezuela", "Transformación Digital"]
 readingTime: "8 min"
 relatedService: "chatbots"
+thumbnail: "/blog/thumb-placeholder.svg"
+featuredImage: "/blog/hero-placeholder.svg"
 ---
 
 La inteligencia artificial dejó de ser una promesa de futuro para convertirse en una herramienta tangible que está transformando empresas en todo el mundo. En Venezuela, donde la volatilidad económica y la escasez de talento técnico presentan desafíos únicos, la IA ofrece una oportunidad histórica para **hacer más con menos**.

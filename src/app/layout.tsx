@@ -9,6 +9,9 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/favicon.ico',
+  },
   title: {
     default:
       'Automatización e IA para Empresas en Venezuela | Scale Systems',
@@ -95,7 +98,9 @@ export default function RootLayout({
 
   return (
     <html lang="es" className="h-full antialiased">
-      <head>
+      <body
+        className={`min-h-screen bg-scale-bg text-scale-text font-sans selection:bg-scale-accent selection:text-scale-bg flex flex-col ${inter.className}`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -108,10 +113,6 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
-      </head>
-      <body
-        className={`min-h-screen bg-scale-bg text-scale-text font-sans selection:bg-scale-accent selection:text-scale-bg flex flex-col ${inter.className}`}
-      >
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

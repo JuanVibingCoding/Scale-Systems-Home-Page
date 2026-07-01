@@ -7,6 +7,8 @@ export interface BlogPost {
   description: string;
   date: string;
   tags: string[];
+  thumbnail?: string;
+  featuredImage?: string;
   ogImage?: string;
   readingTime: string;
   relatedService?: string;
@@ -19,12 +21,15 @@ interface Frontmatter {
   date: string;
   tags: string[];
   readingTime: string;
+  thumbnail?: string;
+  featuredImage?: string;
   ogImage?: string;
   relatedService?: string;
 }
 
 function parseFrontmatter(raw: string): { frontmatter: Record<string, unknown>; content: string } {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  const normalized = raw.replace(/\r\n/g, '\n');
+  const match = normalized.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { frontmatter: {}, content: raw };
 
   const frontmatter: Record<string, unknown> = {};
@@ -66,6 +71,8 @@ function readAllPosts(): BlogPost[] {
       description: fm.description || '',
       date: fm.date || '',
       tags: Array.isArray(fm.tags) ? fm.tags : [],
+      thumbnail: fm.thumbnail,
+      featuredImage: fm.featuredImage,
       ogImage: fm.ogImage,
       readingTime: fm.readingTime || '',
       relatedService: fm.relatedService || undefined,

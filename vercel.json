@@ -4,14 +4,6 @@
   "buildCommand": "next build",
   "outputDirectory": ".next",
   "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.scalesystems.dev" }],
-      "destination": "https://scalesystems.dev/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/fonts/(.*)",

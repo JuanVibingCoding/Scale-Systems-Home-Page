@@ -9,10 +9,10 @@ const SITE_URL =
 
 const servicesData: Record<
   string,
-  {title: string; subtitle: string; desc: string[]; whatsappText: string}
+  {title: string; subtitle: string; desc: string[]; whatsappText: string; metaDescription?: string; ogTitle?: string}
 > = {
   'diseno-web': {
-    title: 'Diseño Web Vanguardista',
+    title: 'Diseño Web Vanguardista | Sitios que Convierten',
     subtitle: 'Tu vitrina digital optimizada para convertir',
     desc: [
       'Creamos sitios web ultrarrápidos, con diseño premium y enfocados en la experiencia del usuario.',
@@ -21,6 +21,9 @@ const servicesData: Record<
     ],
     whatsappText:
       '¡Hola! Quiero cotizar un Diseño Web Vanguardista.',
+    metaDescription:
+      'Diseño y desarrollo de sitios web ultrarrápidos y enfocados en conversión para negocios en Venezuela. Rediseño, mantenimiento y sistemas de ventas 24/7. +25 años de experiencia.',
+    ogTitle: 'Diseño Web Vanguardista | Scale Systems',
   },
   automatizacion: {
     title: 'Automatización Pro',
@@ -60,13 +63,13 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 
   return {
     title: data.title,
-    description: `${data.subtitle}. ${data.desc[0]}`,
+    description: data.metaDescription || `${data.subtitle}. ${data.desc[0]}`,
     alternates: {
       canonical: `/servicio/${id}`,
     },
     openGraph: {
-      title: data.title,
-      description: data.subtitle,
+      title: data.ogTitle || data.title,
+      description: data.metaDescription || data.subtitle,
       url: `/servicio/${id}`,
     },
   };
@@ -133,6 +136,25 @@ export default async function ServicePage({params}: Props) {
           }),
         }}
       />
+
+      {id === 'diseno-web' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {'@type': 'Question', name: 'Ya tengo una página en Instagram o Facebook, ¿de verdad necesito una web?', acceptedAnswer: {'@type': 'Answer', text: 'Las redes sociales son excelentes para conectar y mostrar tu marca, pero no reemplazan un canal de ventas propio. Un sitio web te da control total sobre tus datos, tu diseño y tu experiencia de compra.'}},
+                {'@type': 'Question', name: 'Ya tengo una web pero no me trae clientes, ¿qué hacen distinto?', acceptedAnswer: {'@type': 'Answer', text: 'Empezamos con una auditoría de velocidad, experiencia de usuario y estructura de conversión, y rediseñamos sobre esa base sin perder el posicionamiento acumulado.'}},
+                {'@type': 'Question', name: '¿Cuánto tiempo toma tener mi sitio funcionando?', acceptedAnswer: {'@type': 'Answer', text: 'Depende de la complejidad del proyecto. En el diagnóstico inicial se entrega un cronograma claro antes de comenzar.'}},
+                {'@type': 'Question', name: '¿Se integra con WhatsApp y chatbots?', acceptedAnswer: {'@type': 'Answer', text: 'Sí, el sitio puede integrarse con atención por WhatsApp, agendamiento y CRM como parte de un sistema único.'}},
+              ],
+            }),
+          }}
+        />
+      )}
+
       <ServiceLandingPage
         id={id}
         title={data.title}

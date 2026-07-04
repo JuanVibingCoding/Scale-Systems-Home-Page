@@ -26,7 +26,7 @@ const servicesData: Record<
     ogTitle: 'Diseño Web Vanguardista | Scale Systems',
   },
   automatizacion: {
-    title: 'Automatización Pro',
+    title: 'Automatización de Procesos con IA | CRM, WhatsApp y Facturación Conectados',
     subtitle: 'Elimina el error humano y acelera tu crecimiento',
     desc: [
       'Conectamos tus herramientas (CRM, Email, WhatsApp) para que trabajen de forma sincronizada y sin intervención humana.',
@@ -35,6 +35,9 @@ const servicesData: Record<
     ],
     whatsappText:
       '¡Hola! Me interesa la Automatización Pro para mi empresa.',
+    metaDescription:
+      'Conectamos tu CRM, WhatsApp, email y facturación en un solo sistema automático. Elimina el error humano, deja de perder leads y escala sin contratar al mismo ritmo. +25 años de experiencia en Venezuela.',
+    ogTitle: 'Automatización de Procesos con IA | Scale Systems',
   },
   chatbots: {
     title: 'AI Chatbots',
@@ -149,6 +152,25 @@ export default async function ServicePage({params}: Props) {
                 {'@type': 'Question', name: 'Ya tengo una web pero no me trae clientes, ¿qué hacen distinto?', acceptedAnswer: {'@type': 'Answer', text: 'Empezamos con una auditoría de velocidad, experiencia de usuario y estructura de conversión, y rediseñamos sobre esa base sin perder el posicionamiento acumulado.'}},
                 {'@type': 'Question', name: '¿Cuánto tiempo toma tener mi sitio funcionando?', acceptedAnswer: {'@type': 'Answer', text: 'Depende de la complejidad del proyecto. En el diagnóstico inicial se entrega un cronograma claro antes de comenzar.'}},
                 {'@type': 'Question', name: '¿Se integra con WhatsApp y chatbots?', acceptedAnswer: {'@type': 'Answer', text: 'Sí, el sitio puede integrarse con atención por WhatsApp, agendamiento y CRM como parte de un sistema único.'}},
+              ],
+            }),
+          }}
+        />
+      )}
+
+      {id === 'automatizacion' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {'@type': 'Question', name: '¿Tengo que cambiar todas mis herramientas actuales?', acceptedAnswer: {'@type': 'Answer', text: 'No necesariamente. Siempre que sea posible, se conectan las herramientas que el negocio ya usa hoy.'}},
+                {'@type': 'Question', name: '¿Qué pasa si se cae el internet o falla una integración?', acceptedAnswer: {'@type': 'Answer', text: 'Los flujos se diseñan con resiliencia: el sistema retoma y sincroniza automáticamente en cuanto la conexión vuelve.'}},
+                {'@type': 'Question', name: '¿Esto reemplaza a mi equipo?', acceptedAnswer: {'@type': 'Answer', text: 'No. Elimina el trabajo repetitivo para que el equipo se enfoque en tareas que requieren criterio humano.'}},
+                {'@type': 'Question', name: '¿Pueden automatizar la facturación con tasa BCV?', acceptedAnswer: {'@type': 'Answer', text: 'Sí, el sistema puede calcular el monto según la tasa de cambio del día automáticamente.'}},
+                {'@type': 'Question', name: '¿Esto ayuda si cada empleado hace las cosas de forma distinta?', acceptedAnswer: {'@type': 'Answer', text: 'Sí. El sistema define un solo flujo que todo el equipo sigue, eliminando la dependencia de que cada quien tenga su propio método o su propia hoja de cálculo.'}},
               ],
             }),
           }}

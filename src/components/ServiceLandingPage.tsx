@@ -5,7 +5,7 @@ import {GlowingEffect} from '@/components/ui/glowing-effect';
 import {RobotIcon} from '@/components/ui/robot-icon';
 import {useGlobalMouse} from '@/lib/use-global-mouse';
 import Link from 'next/link';
-import {ArrowLeft, MessageCircle, Zap, XCircle, Lock, Smartphone, Shield, BarChart3, Search} from 'lucide-react';
+import {ArrowLeft, MessageCircle, Zap, XCircle, Lock, Smartphone, Shield, BarChart3, Search, Clock, GitMerge, FileSpreadsheet, Database, Receipt, UserX, EyeOff, TrendingUp, Cpu, CheckCircle, DollarSign, Inbox, ClipboardList, ShoppingCart, Calendar, Truck, Wifi, UserCheck} from 'lucide-react';
 import {cn} from '@/lib/utils';
 import {useState, useEffect, lazy, Suspense} from 'react';
 
@@ -131,6 +131,155 @@ const faqs = [
   },
 ];
 
+const automationPainPoints = [
+  {
+    icon: <Clock className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Leads que se enfrían',
+    desc: 'Un mensaje sin responder a tiempo, sea por WhatsApp, Instagram o el formulario de tu web, es una venta que se va con la competencia.',
+  },
+  {
+    icon: <GitMerge className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Canales que no se hablan entre sí',
+    desc: 'Un lead te escribe por Instagram, otro por WhatsApp, otro llena el formulario de tu web, y cada uno vive en un mundo aparte.',
+  },
+  {
+    icon: <FileSpreadsheet className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Cada empleado, su propio método',
+    desc: 'Un vendedor lleva sus pedidos en un Excel que solo él entiende, otro anota todo en un cuaderno, y cuando algo se pierde, nadie sabe de quién fue la culpa.',
+  },
+  {
+    icon: <Database className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Información dispersa',
+    desc: 'Un mismo cliente, con datos regados entre WhatsApp, redes sociales, hojas sueltas y la memoria de quien lo atendió.',
+  },
+  {
+    icon: <Receipt className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Errores de facturación',
+    desc: 'Un cero de más o de menos, escrito a mano, puede costarte más que todo lo que ahorraste no automatizando.',
+  },
+  {
+    icon: <UserX className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Todo depende de una persona',
+    desc: 'Si esa persona falta, sale de vacaciones o cambia de trabajo, el proceso se detiene con ella.',
+  },
+  {
+    icon: <EyeOff className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Cero visibilidad',
+    desc: 'No sabes cuántos leads entraron esta semana, ni en qué paso del embudo se quedaron atascados.',
+  },
+  {
+    icon: <TrendingUp className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'No escalas sin contratar',
+    desc: 'Cada cliente nuevo significa más carga manual para el mismo equipo, en vez de más eficiencia.',
+  },
+];
+
+const automationBenefits = [
+  {
+    icon: <Cpu className="w-5 h-5 text-scale-accent" />,
+    title: 'Un solo sistema conectado',
+    desc: 'CRM, WhatsApp, redes sociales, tu web y facturación hablando entre sí, no piezas sueltas que alguien tiene que reconciliar a mano.',
+  },
+  {
+    icon: <CheckCircle className="w-5 h-5 text-scale-accent" />,
+    title: 'Cero leads perdidos',
+    desc: 'Cada mensaje se registra, se clasifica y recibe seguimiento automático, sin depender de que alguien se acuerde.',
+  },
+  {
+    icon: <Shield className="w-5 h-5 text-scale-accent" />,
+    title: 'Menos error humano',
+    desc: 'Las reglas se ejecutan siempre igual, sin importar qué tan cansado esté tu equipo un viernes a las cinco de la tarde.',
+  },
+  {
+    icon: <DollarSign className="w-5 h-5 text-scale-accent" />,
+    title: 'Facturación sin dolores de cabeza',
+    desc: 'Cálculo automático con la tasa de cambio del día, sin hojas de cálculo improvisadas ni ajustes de último minuto.',
+  },
+  {
+    icon: <BarChart3 className="w-5 h-5 text-scale-accent" />,
+    title: 'Visibilidad total',
+    desc: 'Un panel que muestra qué está pasando en tu negocio en tiempo real, sin tener que pedirle un reporte a nadie.',
+  },
+  {
+    icon: <TrendingUp className="w-5 h-5 text-scale-accent" />,
+    title: 'Escala sin contratar al mismo ritmo',
+    desc: 'Crecer no debería significar necesariamente sumar más gente para hacer lo mismo, una y otra vez.',
+  },
+  {
+    icon: <Inbox className="w-5 h-5 text-scale-accent" />,
+    title: 'Todos tus canales, un mismo lugar',
+    desc: 'Ya sea que el cliente te escriba por WhatsApp, Instagram, tu web o Facebook, la información llega al mismo sistema.',
+  },
+  {
+    icon: <ClipboardList className="w-5 h-5 text-scale-accent" />,
+    title: 'Un mismo proceso, sin importar quién atienda',
+    desc: 'Cada miembro del equipo sigue el mismo flujo automático. El resultado deja de depender de quién estaba de turno ese día.',
+  },
+];
+
+const useCases = [
+  {
+    tag: 'Ecommerce & Retail',
+    title: 'Pedidos multicanal: WhatsApp, Instagram y web',
+    reto: 'Pedidos que llegan por WhatsApp, Instagram y la web, cada uno gestionado de forma distinta, e inventario que nunca coincide con lo que realmente hay en stock.',
+    solution: 'Catálogo conectado a todos los canales de venta, confirmación automática de pedido y actualización de inventario en el mismo momento.',
+    resultado: 'El equipo deja de perseguir pedidos en tres pantallas distintas y se enfoca en atender bien al cliente.',
+  },
+  {
+    tag: 'Servicios profesionales',
+    title: 'Agendamiento de citas y consultas',
+    reto: 'Citas agendadas por teléfono o WhatsApp que se duplican, se olvidan o nadie confirma a tiempo.',
+    solution: 'Agendamiento automático con disponibilidad en tiempo real, recordatorios y seguimiento después de la cita.',
+    resultado: 'Menos inasistencias, y el personal deja de perder tiempo confirmando citas una por una.',
+  },
+  {
+    tag: 'Distribución & mayoristas',
+    title: 'Pedidos recurrentes y facturación',
+    reto: 'Clientes que compran cada mes, gestionados a mano, con facturas atrasadas y alertas de stock que llegan tarde.',
+    solution: 'Pedidos recurrentes programados, alertas automáticas de stock bajo y facturación generada sola.',
+    resultado: 'El equipo de ventas deja de hacer trabajo administrativo y se dedica a conseguir nuevos clientes.',
+  },
+];
+
+const veAdvantages = [
+  {
+    icon: <Smartphone className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Todos los canales donde vende tu cliente',
+    desc: 'Diseñamos alrededor de los canales que tu cliente realmente usa (WhatsApp, Instagram, Facebook o tu propia web), no alrededor de uno solo.',
+  },
+  {
+    icon: <DollarSign className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Facturación en bolívares y dólares',
+    desc: 'Cálculo automático con la tasa de cambio del día, sin depender de que alguien la actualice a mano cada mañana.',
+  },
+  {
+    icon: <Wifi className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Resiliente ante fallas de conexión',
+    desc: 'Si la conexión se cae, el sistema retoma y sincroniza automáticamente en cuanto vuelve, sin perder información.',
+  },
+  {
+    icon: <UserCheck className="w-[18px] h-[18px] text-scale-accent" />,
+    title: 'Menos dependencia de una sola persona',
+    desc: 'Con la rotación de personal que existe en el país, el proceso queda documentado en el sistema, no solo en la cabeza de quien lo hacía.',
+  },
+];
+
+const automationProcessSteps = [
+  {num: '01', title: 'Diagnóstico de procesos', desc: 'Mapeamos cómo funciona hoy tu operación, y dónde exactamente se está perdiendo tiempo o dinero.'},
+  {num: '02', title: 'Diseño del flujo', desc: 'Definimos, contigo, cómo debería fluir la información entre tus herramientas de principio a fin.'},
+  {num: '03', title: 'Integración', desc: 'Conectamos las herramientas que ya usas (o las que necesites) para que trabajen como un solo sistema.'},
+  {num: '04', title: 'Monitoreo y ajuste', desc: 'Medimos cómo funciona en la práctica y ajustamos las reglas, porque tu negocio sigue cambiando.'},
+];
+
+const automationFaqs = [
+  {q: '¿Tengo que cambiar todas mis herramientas actuales?', a: 'No necesariamente. Siempre que sea posible, conectamos las herramientas que ya usas hoy. Solo recomendamos cambiar algo cuando la herramienta actual realmente no puede integrarse o te está limitando.'},
+  {q: '¿Qué pasa si se cae el internet o falla una integración?', a: 'Diseñamos los flujos con resiliencia: si algo se interrumpe, el sistema retoma y sincroniza la información automáticamente en cuanto la conexión vuelve, sin perder registros en el camino.'},
+  {q: '¿Esto reemplaza a mi equipo?', a: 'No. Elimina el trabajo repetitivo y mecánico, para que tu equipo se enfoque en lo que de verdad requiere criterio humano: vender, negociar y atender bien a un cliente difícil.'},
+  {q: '¿Pueden automatizar la facturación con tasa de cambio BCV?', a: 'Sí, es una de las automatizaciones más solicitadas en Venezuela: el sistema calcula el monto según la tasa del día, sin que nadie tenga que revisarla y actualizarla a mano.'},
+  {q: '¿Cuánto tiempo toma implementar una automatización?', a: 'Depende de cuántas herramientas y procesos estén involucrados. En el diagnóstico inicial te entregamos un cronograma claro antes de empezar, sin sorpresas.'},
+  {q: '¿Esto ayuda si cada empleado hace las cosas de forma distinta?', a: 'Sí, es justamente uno de los problemas que más resolvemos. El sistema define un solo flujo que todo el equipo sigue, sin importar quién esté de turno, así que dejas de depender de que cada quien tenga su propio método para hacer lo mismo.'},
+];
+
 function LandDiagram() {
   return (
     <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparación entre construir tu negocio en una red social (terreno alquilado) y en tu propio sitio web (terreno propio)" className="w-full h-auto">
@@ -169,6 +318,82 @@ function LandDiagram() {
         <text x="690" y="255" textAnchor="middle" fill="#f3f2e8" fontFamily="JetBrains Mono, monospace" fontSize="13" fontWeight="700">TU SITIO WEB</text>
         <text x="690" y="272" textAnchor="middle" fill="#03fa6e" fontFamily="JetBrains Mono, monospace" fontSize="11" fontWeight="600">terreno propio</text>
       </g>
+    </svg>
+  );
+}
+
+function HeroVisualAutomation() {
+  return (
+    <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <g fontFamily="JetBrains Mono, monospace" fontSize="10.5" fontWeight="600">
+        <rect x="10" y="20" width="80" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="1.6" />
+        <text x="50" y="45" textAnchor="middle" fill="#f3f2e8">LEAD</text>
+        <rect x="130" y="20" width="80" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="1.6" />
+        <text x="170" y="45" textAnchor="middle" fill="#f3f2e8">CRM</text>
+        <rect x="250" y="20" width="80" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="1.6" />
+        <text x="290" y="38" textAnchor="middle" fill="#f3f2e8">CANALES</text>
+        <text x="290" y="51" textAnchor="middle" fill="#03fa6e" fontSize="7.5">WSP · IG · WEB</text>
+        <rect x="70" y="130" width="90" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="1.6" />
+        <text x="115" y="150" textAnchor="middle" fill="#f3f2e8">FACTURA</text>
+        <text x="115" y="162" textAnchor="middle" fill="#03fa6e" fontSize="9">automática</text>
+        <rect x="200" y="130" width="90" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="1.6" />
+        <text x="245" y="150" textAnchor="middle" fill="#f3f2e8">REPORTE</text>
+        <text x="245" y="162" textAnchor="middle" fill="#03fa6e" fontSize="9">tiempo real</text>
+        <path d="M90 41 H130" stroke="#03fa6e" strokeWidth="1.6" markerEnd="url(#arrow-auto)" />
+        <path d="M210 41 H250" stroke="#03fa6e" strokeWidth="1.6" markerEnd="url(#arrow-auto)" />
+        <path d="M170 62 V100 Q170 115 155 118 L120 128" stroke="#03fa6e" strokeWidth="1.6" fill="none" markerEnd="url(#arrow-auto)" />
+        <path d="M170 62 V100 Q170 115 190 118 L225 128" stroke="#03fa6e" strokeWidth="1.6" fill="none" markerEnd="url(#arrow-auto)" />
+      </g>
+      <defs>
+        <marker id="arrow-auto" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6 Z" fill="#03fa6e" />
+        </marker>
+      </defs>
+      <rect x="10" y="188" width="150" height="24" rx="12" fill="rgba(3,250,110,0.14)" stroke="#03fa6e" strokeWidth="1" />
+      <text x="85" y="204" textAnchor="middle" fill="#03fa6e" fontFamily="JetBrains Mono, monospace" fontSize="10" fontWeight="700">✓ SISTEMA ACTIVO 24/7</text>
+    </svg>
+  );
+}
+
+function FlowDiagram() {
+  return (
+    <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparación entre un proceso manual desconectado y un proceso automatizado conectado de principio a fin" className="w-full h-auto">
+      <g fontFamily="JetBrains Mono, monospace" fontSize="11" fill="#9a9c87">
+        <rect x="50" y="55" width="90" height="42" rx="6" fill="none" stroke="#5a5c48" strokeWidth="1.5" transform="rotate(-4 95 76)" />
+        <text x="95" y="80" textAnchor="middle" transform="rotate(-4 95 76)">Excel</text>
+        <rect x="180" y="30" width="90" height="42" rx="6" fill="none" stroke="#5a5c48" strokeWidth="1.5" transform="rotate(3 225 51)" />
+        <text x="225" y="55" textAnchor="middle" transform="rotate(3 225 51)">WhatsApp</text>
+        <rect x="90" y="150" width="90" height="42" rx="6" fill="none" stroke="#5a5c48" strokeWidth="1.5" transform="rotate(2 135 171)" />
+        <text x="135" y="175" textAnchor="middle" transform="rotate(2 135 171)">Cuaderno</text>
+        <rect x="230" y="160" width="90" height="42" rx="6" fill="none" stroke="#5a5c48" strokeWidth="1.5" transform="rotate(-3 275 181)" />
+        <text x="275" y="185" textAnchor="middle" transform="rotate(-3 275 181)">Correo</text>
+        <path d="M140 90 L190 60" stroke="#5a5c48" strokeWidth="1.2" strokeDasharray="4 4" />
+        <path d="M140 100 L120 155" stroke="#5a5c48" strokeWidth="1.2" strokeDasharray="4 4" />
+        <path d="M225 72 L260 165" stroke="#5a5c48" strokeWidth="1.2" strokeDasharray="4 4" />
+        <path d="M180 175 L235 178" stroke="#5a5c48" strokeWidth="1.2" strokeDasharray="4 4" />
+      </g>
+      <text x="185" y="260" textAnchor="middle" fill="#9a9c87" fontFamily="JetBrains Mono, monospace" fontSize="13" fontWeight="700">ANTES</text>
+      <text x="185" y="277" textAnchor="middle" fill="#6a6c58" fontFamily="JetBrains Mono, monospace" fontSize="11">herramientas desconectadas</text>
+      <line x1="450" y1="40" x2="450" y2="230" stroke="#383a2c" strokeWidth="1" strokeDasharray="4 6" />
+      <g fontFamily="JetBrains Mono, monospace" fontSize="11.5" fontWeight="600">
+        <rect x="500" y="110" width="80" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="2" />
+        <text x="540" y="135" textAnchor="middle" fill="#f3f2e8">Lead</text>
+        <rect x="615" y="110" width="80" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="2" />
+        <text x="655" y="135" textAnchor="middle" fill="#f3f2e8">CRM</text>
+        <rect x="730" y="110" width="80" height="42" rx="8" fill="none" stroke="#03fa6e" strokeWidth="2" />
+        <text x="770" y="135" textAnchor="middle" fill="#f3f2e8">WhatsApp</text>
+        <path d="M580 131 H615" stroke="#03fa6e" strokeWidth="2" markerEnd="url(#arrow-flow)" />
+        <path d="M695 131 H730" stroke="#03fa6e" strokeWidth="2" markerEnd="url(#arrow-flow)" />
+        <path d="M770 152 V180 Q770 190 760 190 L560 190 Q550 190 550 180 V152" stroke="#03fa6e" strokeWidth="2" fill="none" markerEnd="url(#arrow-flow)" />
+        <text x="560" y="220" textAnchor="middle" fill="#03fa6e" fontSize="10.5">Factura + Reporte automáticos</text>
+      </g>
+      <defs>
+        <marker id="arrow-flow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6 Z" fill="#03fa6e" />
+        </marker>
+      </defs>
+      <text x="685" y="260" textAnchor="middle" fill="#f3f2e8" fontFamily="JetBrains Mono, monospace" fontSize="13" fontWeight="700">DESPUÉS</text>
+      <text x="685" y="277" textAnchor="middle" fill="#03fa6e" fontFamily="JetBrains Mono, monospace" fontSize="11" fontWeight="600">un solo sistema conectado</text>
     </svg>
   );
 }
@@ -216,6 +441,7 @@ export default function ServiceLandingPage({
 }: ServiceLandingPageProps) {
   const wppLink = `https://wa.me/584121234567?text=${encodeURIComponent(whatsappText)}`;
   const isDisenoWeb = id === 'diseno-web';
+  const isAutomatizacion = id === 'automatizacion';
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -524,33 +750,286 @@ export default function ServiceLandingPage({
               </div>
             </section>
 
-            {/* CHATBOT */}
-            <AnimatePresence>
-              {isScrolled && !isChatOpen && (
-                <motion.div
-                  className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end"
-                  initial={{opacity: 0, scale: 0.5, y: 20}}
-                  animate={{opacity: 1, scale: 1, y: 0}}
-                  exit={{opacity: 0, scale: 0.5, y: 20}}
-                  transition={{type: 'spring', bounce: 0.25, duration: 0.5}}
-                >
-                  <div
-                    onClick={() => setIsChatOpen(true)}
-                    className="w-12 h-12 sm:w-16 sm:h-16 bg-scale-accent rounded-xl sm:rounded-2xl cursor-pointer shadow-[0_0_30px_rgba(3,250,110,0.3)] flex items-center justify-center hover:scale-105 transition-transform"
-                  >
-                    <RobotIcon mousePos={{x: 0, y: 0}} className="w-7 h-7 sm:w-10 sm:h-10" isDark={true} />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          </>
+        ) : isAutomatizacion ? (
+          <>
+            {/* BACK NAV */}
+            <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 pt-24 sm:pt-28">
+              <Link
+                href="/#servicios"
+                className="inline-flex items-center gap-2 text-scale-muted hover:text-scale-accent transition-colors font-mono text-sm"
+              >
+                <ArrowLeft size={16} />
+                Volver a Servicios
+              </Link>
+            </div>
 
-            <AnimatePresence>
-              {isChatOpen && (
-                <Suspense fallback={null}>
-                  <ChatWindow onClose={() => setIsChatOpen(false)} />
-                </Suspense>
-              )}
-            </AnimatePresence>
+            {/* HERO */}
+            <section className="pt-6 md:pt-8 pb-20 md:pb-24">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
+                <div>
+                  <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                    <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                    Automatización de Procesos
+                  </div>
+                  <h1 className="text-[clamp(34px,4.6vw,52px)] font-bold leading-[1.15] tracking-tight mb-5">
+                    Deja que tus herramientas trabajen juntas, mientras tu equipo se dedica a <span className="text-scale-accent">cerrar ventas</span>.
+                  </h1>
+                  <p className="text-lg text-scale-muted max-w-[540px] mb-8">
+                    Conectamos tu CRM, WhatsApp, redes sociales, tu web y tu facturación en un solo sistema automático, para que ningún lead se pierda por una tarea que se te olvidó hacer a mano.
+                  </p>
+                  <div className="flex gap-4 flex-wrap mb-7">
+                    <a href="#contacto" className="inline-flex items-center gap-2.5 px-7 py-[15px] rounded-full font-semibold text-sm bg-scale-accent text-[#0c1008] hover:translate-y-[-2px] hover:shadow-[0_10px_30px_-8px_rgba(3,250,110,0.28)] transition-all duration-150">
+                      Solicita tu Diagnóstico Gratuito
+                    </a>
+                    <a href="#proceso" className="inline-flex items-center gap-2.5 px-7 py-[15px] rounded-full font-semibold text-sm bg-transparent border border-scale-border text-scale-text hover:border-scale-accent hover:text-scale-accent transition-all duration-150">
+                      Ver cómo funciona
+                    </a>
+                  </div>
+                  <p className="font-mono text-sm text-scale-muted">
+                    <span className="text-scale-text font-bold">+25 años</span> en tecnología · más de un año diseñando automatizaciones con IA para negocios en Venezuela.
+                  </p>
+                </div>
+                <div className="relative bg-scale-card border border-scale-border rounded-[20px] p-6 overflow-hidden" aria-hidden="true">
+                  <div className="absolute inset-0 pointer-events-none" style={{backgroundImage: 'linear-gradient(#2a2c1f 1px, transparent 1px), linear-gradient(90deg, #2a2c1f 1px, transparent 1px)', backgroundSize: '26px 26px', opacity: 0.25}} />
+                  <HeroVisualAutomation />
+                </div>
+              </div>
+            </section>
+
+            {/* STATS BAR */}
+            <div className="border-y border-scale-border py-8">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div>
+                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">25+</div>
+                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">Años de experiencia en desarrollo y tecnología</div>
+                </div>
+                <div>
+                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">92%</div>
+                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">De los venezolanos usa WhatsApp a diario para hablar con empresas, además de redes sociales y web</div>
+                </div>
+                <div>
+                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">6+</div>
+                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">Horas semanales que los equipos podrían recuperar automatizando tareas repetitivas</div>
+                </div>
+                <div>
+                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">24/7</div>
+                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">Tu sistema sigue funcionando aunque tu equipo ya se haya ido a casa</div>
+                </div>
+              </div>
+            </div>
+
+            {/* PAIN SECTION */}
+            <section className="py-20 md:py-24 bg-[#1d1f15]">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+                <div className="max-w-[760px] mb-5">
+                  <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                    <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                    La realidad operativa
+                  </div>
+                  <h2 className="text-[clamp(28px,3.6vw,40px)] font-bold leading-[1.15] tracking-tight mb-4">El costo oculto de hacerlo todo a mano</h2>
+                  <p className="text-[17.5px] text-scale-muted mb-4">
+                    Cada tarea manual repetitiva no solo consume tiempo: <strong className="text-scale-text">esconde un costo que no aparece en ningún reporte</strong>, hasta que ya es demasiado tarde. Un lead sin responder en WhatsApp, Instagram o tu web, una factura mal calculada, un proceso que cada empleado hace a su manera: todo eso es dinero que se pierde sin que nadie lo note.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-[18px_32px] my-10">
+                  {automationPainPoints.map((p, i) => (
+                    <div key={i} className="flex gap-[14px]">
+                      <div className="flex-shrink-0 w-[34px] h-[34px] rounded-[9px] bg-[rgba(3,250,110,0.14)] border border-[rgba(3,250,110,0.28)] flex items-center justify-center">
+                        {p.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold mb-1">{p.title}</h4>
+                        <p className="text-base text-scale-muted">{p.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-scale-card border border-scale-border border-l-[3px] border-l-scale-accent rounded-[14px] p-[26px_28px] my-12">
+                  <span className="block font-mono text-xs tracking-[0.1em] text-scale-accent uppercase font-bold mb-2.5">La realidad venezolana</span>
+                  <p className="text-base">En Venezuela, WhatsApp es el canal principal de comunicación comercial, usado a diario por la inmensa mayoría de la población para hablar con empresas, pero casi nunca es el único: la misma empresa suele recibir leads por Instagram, Facebook, su sitio web y hasta por teléfono. Cualquier automatización real tiene que unificar todos esos canales en un solo lugar, no resolver uno y dejar los demás sueltos. A esto se suma la complejidad de facturar en bolívares y dólares con la tasa de cambio del día, y una rotación de personal que hace peligroso que el conocimiento de "cómo se hacen las cosas aquí" viva solo en la cabeza de una persona.</p>
+                </div>
+
+                <div className="my-14">
+                  <FlowDiagram />
+                  <p className="text-center font-mono text-sm text-scale-muted mt-3.5 tracking-[0.03em]">Lo que antes vivía en cinco lugares distintos, ahora es un solo flujo que nadie tiene que vigilar a mano.</p>
+                </div>
+
+                <div className="overflow-x-auto border border-scale-border rounded-[14px] mt-2.5">
+                  <table className="min-w-[640px] w-full">
+                    <caption className="text-left font-mono text-sm text-scale-muted p-[14px_20px_0]">Comparación: proceso manual vs. proceso automatizado</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col" className="font-mono text-sm uppercase tracking-[0.06em] text-scale-muted bg-[#1d1f15] font-semibold p-[15px_20px] text-left">Aspecto</th>
+                        <th scope="col" className="font-mono text-sm uppercase tracking-[0.06em] text-scale-muted bg-[#1d1f15] font-semibold p-[15px_20px] text-left">Proceso manual</th>
+                        <th scope="col" className="font-mono text-sm uppercase tracking-[0.06em] text-scale-accent bg-[#1d1f15] font-semibold p-[15px_20px] text-left">Proceso automatizado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ['Tiempo de respuesta a un lead', 'Minutos u horas, según disponibilidad', 'Segundos, a cualquier hora'],
+                        ['Riesgo de error humano', 'Alto: tipeo, olvido, duplicados', 'Mínimo: las reglas se ejecutan siempre igual'],
+                        ['Seguimiento de clientes', 'Depende de la memoria del vendedor', 'Automático, nada se cae entre grietas'],
+                        ['Facturación', 'Manual, propensa a errores de cálculo', 'Automática, con tasa de cambio actualizada'],
+                        ['Visibilidad del negocio', 'Reportes armados a mano, después del hecho', 'Panel en tiempo real'],
+                        ['Escalabilidad', 'Crecer significa contratar más gente', 'Crecer significa ajustar el sistema'],
+                        ['Disponibilidad', 'Horario de oficina', '24 horas, 7 días a la semana'],
+                      ].map((row, i) => (
+                        <tr key={i} className="hover:bg-[rgba(255,255,255,0.02)]">
+                          <td className="p-[15px_20px] text-base border-b border-scale-border text-left">{row[0]}</td>
+                          <td className="p-[15px_20px] text-base border-b border-scale-border text-left text-scale-muted"><span className="mr-2 text-scale-border">—</span>{row[1]}</td>
+                          <td className="p-[15px_20px] text-base border-b border-scale-border text-left font-semibold"><span className="text-scale-accent mr-2 font-bold">✓</span>{row[2]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            {/* BENEFITS */}
+            <section id="solucion" className="py-20 md:py-24">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+                <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                  <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                  La solución
+                </div>
+                <h2 className="text-[clamp(28px,3.6vw,40px)] font-bold leading-[1.15] tracking-tight max-w-[720px]">Un sistema, no herramientas sueltas hablando idiomas distintos</h2>
+                <p className="text-scale-muted text-[17px] max-w-[620px] mt-4">No conectamos aplicaciones al azar. Diseñamos el flujo completo, desde que llega un lead hasta que se cobra la factura, para que trabaje solo.</p>
+
+                <div className="grid md:grid-cols-3 gap-[22px] mt-11">
+                  {automationBenefits.map((b, i) => (
+                    <div key={i} className="bg-scale-card border border-scale-border rounded-[14px] p-[26px] hover:border-[rgba(3,250,110,0.28)] hover:-translate-y-[3px] transition-all duration-200">
+                      <div className="w-[42px] h-[42px] rounded-[11px] bg-[rgba(3,250,110,0.14)] border border-[rgba(3,250,110,0.28)] flex items-center justify-center mb-4">
+                        {b.icon}
+                      </div>
+                      <h3 className="text-base font-bold mb-2">{b.title}</h3>
+                      <p className="text-base text-scale-muted">{b.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* USE CASES */}
+            <section className="py-20 md:py-24 bg-[#1d1f15]">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+                <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                  <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                  Así se ve en la práctica
+                </div>
+                <h2 className="text-[clamp(26px,3.2vw,36px)] font-bold max-w-[680px]">Escenarios reales de lo que resolvemos, según tu tipo de negocio</h2>
+                <p className="text-sm text-scale-muted italic mt-2.5 max-w-[640px]">Estos son escenarios ilustrativos que representan los retos más comunes que encontramos en cada industria, no testimonios de clientes específicos.</p>
+
+                <div className="grid md:grid-cols-3 gap-[22px] mt-10">
+                  {useCases.map((uc, i) => (
+                    <div key={i} className="border border-scale-border rounded-[14px] p-[28px_24px] bg-[#1d1f15] flex flex-col">
+                      <span className="font-mono text-xs text-scale-accent uppercase tracking-[0.08em] font-bold mb-3.5">{uc.tag}</span>
+                      <h3 className="text-[18px] font-bold mb-3.5">{uc.title}</h3>
+                      <div className="mb-3">
+                        <b className="block font-mono text-xs text-scale-muted uppercase tracking-[0.04em] mb-1">El reto</b>
+                        <p className="text-base text-scale-text">{uc.reto}</p>
+                      </div>
+                      <div className="mb-3">
+                        <b className="block font-mono text-xs text-scale-muted uppercase tracking-[0.04em] mb-1">La automatización</b>
+                        <p className="text-base text-scale-text">{uc.solution}</p>
+                      </div>
+                      <div className="mt-auto">
+                        <b className="block font-mono text-xs text-scale-muted uppercase tracking-[0.04em] mb-1">El resultado</b>
+                        <p className="text-base text-scale-accent font-semibold">{uc.resultado}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* VENEZUELA ADVANTAGES */}
+            <section className="py-20 md:py-24">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+                <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                  <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                  Pensado para Venezuela
+                </div>
+                <h2 className="text-[clamp(26px,3.2vw,36px)] font-bold max-w-[640px]">Automatización diseñada para la realidad local, no traducida de otro país</h2>
+
+                <div className="grid md:grid-cols-2 gap-5 mt-10">
+                  {veAdvantages.map((va, i) => (
+                    <div key={i} className="flex gap-4 bg-scale-card border border-scale-border rounded-[14px] p-[22px]">
+                      <div className="flex-shrink-0 w-[38px] h-[38px] rounded-[10px] bg-[rgba(3,250,110,0.14)] border border-[rgba(3,250,110,0.28)] flex items-center justify-center">
+                        {va.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold mb-1.5">{va.title}</h4>
+                        <p className="text-base text-scale-muted">{va.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* PROCESS */}
+            <section id="proceso" className="py-20 md:py-24 bg-[#1d1f15]">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+                <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                  <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                  Nuestro proceso
+                </div>
+                <h2 className="text-[clamp(26px,3.2vw,36px)] font-bold max-w-[600px]">Cómo automatizamos tu negocio, paso a paso</h2>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-[22px] mt-12">
+                  {automationProcessSteps.map((step, i) => (
+                    <div key={i} className="pt-2">
+                      <div className="font-mono text-3xl text-scale-accent font-bold mb-3.5">{step.num}</div>
+                      <h4 className="text-base font-bold mb-2">{step.title}</h4>
+                      <p className="text-base text-scale-muted">{step.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* FAQ */}
+            <section className="py-20 md:py-24">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+                <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                  <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                  Preguntas frecuentes
+                </div>
+                <h2 className="text-[clamp(26px,3.2vw,34px)] font-bold">Resolvemos tus dudas antes de que las tengas</h2>
+
+                <div className="mt-10 max-w-[820px]">
+                  {automationFaqs.map((faq, i) => (
+                    <FAQItem key={i} q={faq.q} a={faq.a} />
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* FINAL CTA */}
+            <section id="contacto" className="pb-20 md:pb-24">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+                <div className="text-center bg-scale-card border border-[rgba(3,250,110,0.28)] rounded-[20px] py-[70px] px-[40px] sm:px-10">
+                  <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs tracking-[0.14em] uppercase text-scale-accent font-semibold">
+                    <span className="w-[7px] h-[7px] rounded-full bg-scale-accent shadow-[0_0_10px_#03fa6e]" />
+                    Empecemos
+                  </div>
+                  <h2 className="text-[clamp(26px,3.4vw,38px)] font-bold mb-4">
+                    Deja de perseguir tareas manuales.<br />Empieza a dirigir un sistema que trabaja solo.
+                  </h2>
+                  <p className="text-scale-muted text-base max-w-[560px] mx-auto mb-8">
+                    Una conversación cara a cara, sin compromiso. Te decimos qué procesos conviene automatizar primero, no lo que es más fácil vendernos a nosotros.
+                  </p>
+                  <a href={wppLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 px-7 py-[15px] rounded-full font-semibold text-sm bg-scale-accent text-[#0c1008] hover:translate-y-[-2px] hover:shadow-[0_10px_30px_-8px_rgba(3,250,110,0.28)] transition-all duration-150">
+                    Solicita tu Diagnóstico Gratuito
+                  </a>
+                  <p className="font-mono text-xs text-scale-muted mt-5">Respuesta en menos de 24 horas · Servicio personalizado · Valencia y Caracas</p>
+                </div>
+              </div>
+            </section>
           </>
         ) : (
           <>
@@ -627,6 +1106,34 @@ export default function ServiceLandingPage({
             </div>
           </>
         )}
+
+        {/* CHATBOT */}
+        <AnimatePresence>
+          {isScrolled && !isChatOpen && (
+            <motion.div
+              className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end"
+              initial={{opacity: 0, scale: 0.5, y: 20}}
+              animate={{opacity: 1, scale: 1, y: 0}}
+              exit={{opacity: 0, scale: 0.5, y: 20}}
+              transition={{type: 'spring', bounce: 0.25, duration: 0.5}}
+            >
+              <div
+                onClick={() => setIsChatOpen(true)}
+                className="w-12 h-12 sm:w-16 sm:h-16 bg-scale-accent rounded-xl sm:rounded-2xl cursor-pointer shadow-[0_0_30px_rgba(3,250,110,0.3)] flex items-center justify-center hover:scale-105 transition-transform"
+              >
+                <RobotIcon mousePos={{x: 0, y: 0}} className="w-7 h-7 sm:w-10 sm:h-10" isDark={true} />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {isChatOpen && (
+            <Suspense fallback={null}>
+              <ChatWindow onClose={() => setIsChatOpen(false)} />
+            </Suspense>
+          )}
+        </AnimatePresence>
       </main>
     </motion.div>
   );

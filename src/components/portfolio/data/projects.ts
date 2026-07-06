@@ -9,8 +9,8 @@ export interface Project {
 export const projectsData: Project[] = [
   {
     id: "p1",
-    title: "NEURAL LINK",
-    role: "UX Architecture & Frontend",
+    title: "VELOCITY-GEAR",
+    role: "eCommerce de Impresión bajo Demanda",
     description: "Designing the interface for brain-to-machine data streaming with real-time feedback loops.",
     image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop"
   },

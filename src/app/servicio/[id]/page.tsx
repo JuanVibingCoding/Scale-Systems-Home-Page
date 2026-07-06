@@ -40,8 +40,8 @@ const servicesData: Record<
     ogTitle: 'Automatización de Procesos con IA | Scale Systems',
   },
   chatbots: {
-    title: 'AI Chatbots',
-    subtitle: 'Atención instantánea que cierra ventas por ti',
+    title: 'AI Chatbots — El vendedor que nunca duerme',
+    subtitle: 'Atención instantánea que cierra ventas por ti, 24/7',
     desc: [
       'Entrenamos agentes de Inteligencia Artificial utilizando la información de tu empresa, documentos, manuales y casos de uso específicos.',
       'Tu chatbot personalizado será capaz de responder dudas, agendar citas y cerrar ventas 24/7 en plataformas como WhatsApp, Instagram y tu sitio web.',
@@ -49,6 +49,9 @@ const servicesData: Record<
     ],
     whatsappText:
       '¡Hola! Necesito un Chatbot con IA para mi negocio.',
+    metaDescription:
+      'Atención instantánea que cierra ventas por ti, 24/7, en WhatsApp, Instagram y tu sitio web. Entrenamos agentes IA con la información de tu empresa. El vendedor que nunca duerme.',
+    ogTitle: 'AI Chatbots — El vendedor que nunca duerme | Scale Systems',
   },
 };
 
@@ -171,6 +174,24 @@ export default async function ServicePage({params}: Props) {
                 {'@type': 'Question', name: '¿Esto reemplaza a mi equipo?', acceptedAnswer: {'@type': 'Answer', text: 'No. Elimina el trabajo repetitivo para que el equipo se enfoque en tareas que requieren criterio humano.'}},
                 {'@type': 'Question', name: '¿Pueden automatizar la facturación con tasa BCV?', acceptedAnswer: {'@type': 'Answer', text: 'Sí, el sistema puede calcular el monto según la tasa de cambio del día automáticamente.'}},
                 {'@type': 'Question', name: '¿Esto ayuda si cada empleado hace las cosas de forma distinta?', acceptedAnswer: {'@type': 'Answer', text: 'Sí. El sistema define un solo flujo que todo el equipo sigue, eliminando la dependencia de que cada quien tenga su propio método o su propia hoja de cálculo.'}},
+              ],
+            }),
+          }}
+        />
+      )}
+
+      {id === 'chatbots' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {'@type': 'Question', name: '¿Cómo entrena Scale Systems el chatbot con mi negocio?', acceptedAnswer: {'@type': 'Answer', text: 'Cargamos tus manuales, catálogos, FAQs, casos de uso, precios y políticas en el agente IA para que aprenda a responder exactamente como lo haría tu mejor vendedor.'}},
+                {'@type': 'Question', name: '¿En qué canales puede funcionar el chatbot?', acceptedAnswer: {'@type': 'Answer', text: 'WhatsApp Business API, Instagram, Facebook Messenger y tu sitio web. Un solo agente IA atiende todos los canales con el mismo cerebro.'}},
+                {'@type': 'Question', name: '¿Cuánto tiempo toma implementar un chatbot?', acceptedAnswer: {'@type': 'Answer', text: 'De 2 a 3 semanas en promedio: diagnóstico, entrenamiento, integración y lanzamiento.'}},
+                {'@type': 'Question', name: '¿El chatbot reemplaza a mi equipo de atención al cliente?', acceptedAnswer: {'@type': 'Answer', text: 'No. Absorbe las consultas repetitivas (hasta 80%) para que tu equipo se enfoque en casos complejos que requieren criterio humano. Cuando el chatbot no puede resolver algo, deriva la conversación con todo el contexto.'}},
               ],
             }),
           }}

@@ -1306,27 +1306,7 @@ export default function ServiceLandingPage({
               </div>
             </section>
 
-            {/* STATS BAR */}
-            <div className="border-y border-scale-border py-8">
-              <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div>
-                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">+500%</div>
-                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">Generación de leads con flujos automatizados</div>
-                </div>
-                <div>
-                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">−65%</div>
-                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">Reducción del costo por contacto</div>
-                </div>
-                <div>
-                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">80%</div>
-                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">De consultas repetitivas absorbidas por la IA</div>
-                </div>
-                <div>
-                  <div className="font-mono text-[clamp(26px,3vw,36px)] font-bold text-scale-accent">99%</div>
-                  <div className="text-sm text-scale-muted mt-1.5 leading-[1.4]">Tasa de apertura de WhatsApp Business</div>
-                </div>
-              </div>
-            </div>
+
 
             {/* PAIN POINTS */}
             <section className="py-20 md:py-24 bg-[#1d1f15]">

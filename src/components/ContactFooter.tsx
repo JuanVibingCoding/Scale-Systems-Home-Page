@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react';
+import Image from 'next/image';
 import { Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
 
@@ -342,7 +343,7 @@ export default function ContactFooter() {
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 mt-16 sm:mt-32 pt-8 border-t border-scale-border flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
         <div className="flex justify-center md:justify-start">
-          <img src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems - Agencia de Automatización e IA en Venezuela" className="h-7 md:h-9 w-auto" />
+          <Image src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems - Agencia de Automatización e IA en Venezuela" width={250} height={40} className="h-7 md:h-9 w-auto" />
         </div>
         <p className="text-sm text-scale-muted">
           © {currentYear} Scale Systems. Todos los derechos reservados.

@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { Resend } from 'resend';
 import { createRateLimiter, getClientIp } from '@/lib/rate-limit';
 import { supabase } from '@/lib/supabase';
+import LeadNotification from '@/components/emails/LeadNotification';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'contacto@scalesystems.dev';
+const NOTIFY_EMAILS = (process.env.NOTIFY_EMAILS || 'hola@scalesystems.dev')
+  .split(',')
+  .map((e) => e.trim());
 
 const LeadBodySchema = z.object({
   name: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').max(200),
@@ -90,6 +98,25 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    resend.emails
+      .send({
+        from: `Scale Systems <${FROM_EMAIL}>`,
+        to: NOTIFY_EMAILS,
+        subject: `Nuevo lead: ${leadData.name}${leadData.service ? ` - ${leadData.service}` : ''}`,
+        react: LeadNotification({
+          name: leadData.name,
+          email: leadData.email,
+          company: leadData.company || undefined,
+          phone: leadData.phone || undefined,
+          service: leadData.service || undefined,
+          message: leadData.message,
+          source: source || undefined,
+        }),
+      })
+      .catch((err) => {
+        console.error('Error sending email notification:', err);
+      });
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

@@ -7,7 +7,7 @@ import LeadNotification from '@/components/emails/LeadNotification';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'contacto@scalesystems.dev';
-const NOTIFY_EMAILS = (process.env.NOTIFY_EMAILS || 'hola@scalesystems.dev')
+const NOTIFY_EMAILS = (process.env.NOTIFY_EMAILS || 'ventas@scalesystems.dev')
   .split(',')
   .map((e) => e.trim());
 

@@ -9,7 +9,7 @@ thumbnail: "/blog/falta-de-talento-tecnico-en-venezuela-una-oportunidad-para-usa
 featuredImage: "/blog/falta-de-talento-tecnico-en-venezuela-una-oportunidad-para-usar-ia-1200.webp"
 ---
 
-Venezuela lleva más de una década perdiendo a sus mejores cerebros. Ingenieros, programadores, analistas de datos y científicos han empacado maletas rumbo a Colombia, Perú, Chile, España o Estados Unidos en busca de mejores oportunidades. Para muchas empresas que siguen operando en el país, encontrar talento técnico calificado se ha vuelto casi una quimera.
+Venezuela lleva más de una década perdiendo a sus mejores cerebros. Ingenieros, programadores, analistas de datos y científicos han empacado maletas rumbo a Colombia, Perú, Chile, España o Estados Unidos en busca de mejores oportunidades. Para muchas empresas que siguen operando en el país, encontrar talento técnico calificado se ha vuelto cuesta arriba.
 
 Pero hay una noticia que vale la pena contar: la inteligencia artificial (IA) no es solo una moda tecnológica. Para el mercado venezolano puede ser una de las salidas más concretas para hacer más con menos personas. En este artículo te explico por qué, con datos reales y ejemplos que puedes aplicar mañana mismo en tu negocio.
 

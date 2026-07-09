@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react';
 import Image from 'next/image';
-import { Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle, Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
+import Link from 'next/link';
 import { GlowingEffect } from './ui/glowing-effect';
 
 const CATALOG_OPTIONS = [
@@ -341,11 +342,28 @@ export default function ContactFooter() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 mt-16 sm:mt-32 pt-8 border-t border-scale-border flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-        <div className="flex justify-center md:justify-start">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 mt-16 sm:mt-32 pt-8 border-t border-scale-border grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start gap-4">
           <Image src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems - Agencia de Automatización e IA en Venezuela" width={250} height={40} className="h-7 md:h-9 w-auto" />
+          <p className="text-sm text-scale-muted leading-relaxed max-w-xs">
+            Automatizamos y potenciamos negocios en Venezuela con IA. Construimos sistemas que trabajan por ti, sin complicaciones.
+          </p>
+          <div className="flex items-center gap-3">
+            <Link href="#" aria-label="X" className="w-9 h-9 flex items-center justify-center rounded-full border border-scale-border text-scale-muted hover:text-scale-accent hover:border-scale-accent transition-all"><Twitter size={16} /></Link>
+            <Link href="#" aria-label="Facebook" className="w-9 h-9 flex items-center justify-center rounded-full border border-scale-border text-scale-muted hover:text-scale-accent hover:border-scale-accent transition-all"><Facebook size={16} /></Link>
+            <Link href="#" aria-label="Instagram" className="w-9 h-9 flex items-center justify-center rounded-full border border-scale-border text-scale-muted hover:text-scale-accent hover:border-scale-accent transition-all"><Instagram size={16} /></Link>
+            <Link href="#" aria-label="LinkedIn" className="w-9 h-9 flex items-center justify-center rounded-full border border-scale-border text-scale-muted hover:text-scale-accent hover:border-scale-accent transition-all"><Linkedin size={16} /></Link>
+          </div>
         </div>
-        <p className="text-sm text-scale-muted">
+
+        <nav aria-label="Servicios" className="flex flex-col items-center md:items-start gap-3">
+          <h3 className="text-sm font-semibold text-scale-text tracking-wide">Servicios</h3>
+          <Link href="/servicio/diseno-web" className="text-sm text-scale-muted hover:text-scale-accent transition-colors">Diseño Web Vanguardista</Link>
+          <Link href="/servicio/automatizacion" className="text-sm text-scale-muted hover:text-scale-accent transition-colors">Automatización Pro</Link>
+          <Link href="/servicio/chatbots" className="text-sm text-scale-muted hover:text-scale-accent transition-colors">AI Chatbots</Link>
+        </nav>
+
+        <p className="text-sm text-scale-muted flex items-center justify-center md:justify-end">
           © {currentYear} Scale Systems. Todos los derechos reservados.
         </p>
       </div>

@@ -177,8 +177,3 @@ La inteligencia artificial no es magia ni es humo. Es una herramienta real que e
 En **Scale Systems** ayudamos a empresas venezolanas a separar los mitos de las realidades de la IA. Diseñamos pilotos concretos para que descubras por ti mismo lo que esta tecnología puede hacer por tu negocio, sin compromisos ni humo.
 
 **¿Listo para dejar los mitos atrás y empezar a probar?** [Agenda una consultoría gratuita con nuestro equipo](/#contacto) y te ayudamos a dar el primer paso real.
-
----
-
-> **Prompt para imagen destacada (DALL-E / Stable Diffusion):**
-> A Venezuelan business owner standing at a crossroads, one path labeled with myths (robot replacing humans, dollar signs, confusion) shown in dark red tones, the other path labeled with truth (human and AI collaborating, growth charts, green glowing interface) in bright green (#03fa6e), dark (#171810) background, cinematic lighting, photorealistic, 4k quality, split composition, hopeful atmosphere --ar 16:9

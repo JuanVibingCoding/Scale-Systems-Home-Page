@@ -47,17 +47,7 @@ Aplica esta regla simple:
 
 Un dato concreto: según los [precios públicos de Gemini](https://ai.google.dev/pricing), el modelo pequeño cuesta 30 veces menos que el más grande. Treinta veces. No es una rebaja, es otro planeta.
 
-<svg width="100%" height="160" viewBox="0 0 580 160" xmlns="http://www.w3.org/2000/svg" style="background-color:#171810; border-radius:8px; margin:1.5em 0; border:1px solid #2a2c1f;">
-  <rect x="20" y="30" width="160" height="100" rx="8" fill="#1f2017" stroke="#2a2c1f" stroke-width="1.5"/>
-  <text x="100" y="65" font-family="sans-serif" font-size="28" font-weight="bold" fill="#03fa6e" text-anchor="middle" dominant-baseline="middle">30x</text>
-  <text x="100" y="100" font-family="sans-serif" font-size="13" fill="#63635d" text-anchor="middle" dominant-baseline="middle">Más barato el chico</text>
-  <rect x="200" y="30" width="160" height="100" rx="8" fill="#1f2017" stroke="#2a2c1f" stroke-width="1.5"/>
-  <text x="280" y="65" font-family="sans-serif" font-size="28" font-weight="bold" fill="#03fa6e" text-anchor="middle" dominant-baseline="middle">90%</text>
-  <text x="280" y="100" font-family="sans-serif" font-size="13" fill="#63635d" text-anchor="middle" dominant-baseline="middle">De las tareas diarias</text>
-  <rect x="380" y="30" width="160" height="100" rx="8" fill="#1f2017" stroke="#2a2c1f" stroke-width="1.5"/>
-  <text x="460" y="65" font-family="sans-serif" font-size="28" font-weight="bold" fill="#f59e0b" text-anchor="middle" dominant-baseline="middle">60-80%</text>
-  <text x="460" y="100" font-family="sans-serif" font-size="13" fill="#63635d" text-anchor="middle" dominant-baseline="middle">De ahorro posible</text>
-</svg>
+<svg width="100%" height="160" viewBox="0 0 580 160" xmlns="http://www.w3.org/2000/svg" style="background-color:#171810; border-radius:8px; margin:1.5em 0; border:1px solid #2a2c1f;"><rect style="stroke-width:1.5px;" x="20" y="30" width="160" height="100" rx="8" fill="#1f2017" stroke="#2a2c1f"/><text style="font-family:sans-serif;font-size:28px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;" x="100" y="65" fill="#03fa6e">30x</text><text style="font-family:sans-serif;font-size:13px;text-anchor:middle;dominant-baseline:middle;" x="100" y="100" fill="#63635d">Más barato el chico</text><rect style="stroke-width:1.5px;" x="200" y="30" width="160" height="100" rx="8" fill="#1f2017" stroke="#2a2c1f"/><text style="font-family:sans-serif;font-size:28px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;" x="280" y="65" fill="#03fa6e">90%</text><text style="font-family:sans-serif;font-size:13px;text-anchor:middle;dominant-baseline:middle;" x="280" y="100" fill="#63635d">De las tareas diarias</text><rect style="stroke-width:1.5px;" x="380" y="30" width="160" height="100" rx="8" fill="#1f2017" stroke="#2a2c1f"/><text style="font-family:sans-serif;font-size:28px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;" x="460" y="65" fill="#f59e0b">60-80%</text><text style="font-family:sans-serif;font-size:13px;text-anchor:middle;dominant-baseline:middle;" x="460" y="100" fill="#63635d">De ahorro posible</text></svg>
 
 ---
 

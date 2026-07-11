@@ -26,21 +26,7 @@ Porque pierdes horas valiosas en clientes que solo preguntan el precio y nunca c
 ### La solución
 Un agente de IA entrenado con la información de tu negocio. Responde preguntas frecuentes, califica al cliente y solo pasa a un humano al cerrar el trato.
 
-<svg width="100%" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;">
-  <rect x="20" y="35" width="120" height="50" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="80" y="65" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Cliente</text>
-  <path d="M145 60 L205 60" stroke="#03fa6e" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <rect x="210" y="35" width="150" height="50" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="285" y="65" font-family="sans-serif" font-size="14" fill="#03fa6e" text-anchor="middle">Agente IA</text>
-  <path d="M365 60 L425 60" stroke="#03fa6e" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <rect x="430" y="35" width="140" height="50" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="500" y="65" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Cierre Venta</text>
-  <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#03fa6e" />
-    </marker>
-  </defs>
-</svg>
+<svg width="100%" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;"><rect style="stroke-width:2px;" x="20" y="35" width="120" height="50" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:14px;text-anchor:middle;" x="80" y="65" fill="#a1a1aa">Cliente</text><path style="stroke-width:2px;" d="M145 60 L205 60" stroke="#03fa6e" marker-end="url(#arrowhead)"/><rect style="stroke-width:2px;" x="210" y="35" width="150" height="50" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:14px;text-anchor:middle;" x="285" y="65" fill="#03fa6e">Agente IA</text><path style="stroke-width:2px;" d="M365 60 L425 60" stroke="#03fa6e" marker-end="url(#arrowhead)"/><rect style="stroke-width:2px;" x="430" y="35" width="140" height="50" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:14px;text-anchor:middle;" x="500" y="65" fill="#a1a1aa">Cierre Venta</text><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#03fa6e" /></marker></defs></svg>
 
 ## 2. Cuadrar la nómina y calcular prestaciones en Excel
 

@@ -23,20 +23,7 @@ No todos los que se van son talento técnico, pero una proporción importante s�
 
 El resultado es el que viven a diario las empresas locales: vacantes de desarrolladores, analistas y especialistas en datos que tardan meses en cubrirse, salarios que no logran competir con lo que ofrece el trabajo remoto en dólares, y equipos reducidos tratando de sostener operaciones que antes requerían el doble de personas.
 
-<svg width="100%" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;">
-  <rect x="30" y="20" width="160" height="60" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="110" y="45" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Migración Total</text>
-  <text x="110" y="68" font-family="sans-serif" font-size="22" fill="#03fa6e" text-anchor="middle" font-weight="bold">7.8M</text>
-  <rect x="220" y="20" width="160" height="60" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="300" y="45" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">En América Latina</text>
-  <text x="300" y="68" font-family="sans-serif" font-size="22" fill="#03fa6e" text-anchor="middle" font-weight="bold">6M</text>
-  <rect x="410" y="20" width="160" height="60" rx="8" fill="#2a2c1f" stroke="#f59e0b" stroke-width="2"/>
-  <text x="490" y="45" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Empresas con IA</text>
-  <text x="490" y="68" font-family="sans-serif" font-size="22" fill="#f59e0b" text-anchor="middle" font-weight="bold">11%</text>
-  <text x="300" y="105" font-family="sans-serif" font-size="13" fill="#63635d" text-anchor="middle">Fuente: OIM, FMI, UCAB (2024)</text>
-  <rect x="100" y="125" width="400" height="45" rx="8" fill="#1f2017" stroke="#2a2c1f" stroke-width="1"/>
-  <text x="300" y="153" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">1 de cada 4 venezolanos ha emigrado desde 2014</text>
-</svg>
+<svg width="100%" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;"><rect style="stroke-width:2px;" x="30" y="20" width="160" height="60" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:14px;text-anchor:middle;" x="110" y="45" fill="#a1a1aa">Migración Total</text><text style="font-family:sans-serif;font-size:22px;font-weight:bold;text-anchor:middle;" x="110" y="68" fill="#03fa6e">7.8M</text><rect style="stroke-width:2px;" x="220" y="20" width="160" height="60" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:14px;text-anchor:middle;" x="300" y="45" fill="#a1a1aa">En América Latina</text><text style="font-family:sans-serif;font-size:22px;font-weight:bold;text-anchor:middle;" x="300" y="68" fill="#03fa6e">6M</text><rect style="stroke-width:2px;" x="410" y="20" width="160" height="60" rx="8" fill="#2a2c1f" stroke="#f59e0b"/><text style="font-family:sans-serif;font-size:14px;text-anchor:middle;" x="490" y="45" fill="#a1a1aa">Empresas con IA</text><text style="font-family:sans-serif;font-size:22px;font-weight:bold;text-anchor:middle;" x="490" y="68" fill="#f59e0b">11%</text><text style="font-family:sans-serif;font-size:13px;text-anchor:middle;" x="300" y="105" fill="#63635d">Fuente: OIM, FMI, UCAB (2024)</text><rect style="stroke-width:1px;" x="100" y="125" width="400" height="45" rx="8" fill="#1f2017" stroke="#2a2c1f"/><text style="font-family:sans-serif;font-size:14px;text-anchor:middle;" x="300" y="153" fill="#a1a1aa">1 de cada 4 venezolanos ha emigrado desde 2014</text></svg>
 
 ---
 
@@ -69,35 +56,7 @@ Para una empresa venezolana con tres ingenieros, esto puede significar la difere
 
 Veamos dónde conviene apostar primero:
 
-<svg width="100%" height="280" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;">
-  <!-- Row 1 -->
-  <rect x="20" y="20" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="1.5"/>
-  <text x="105" y="48" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle">💬</text>
-  <text x="105" y="75" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle" font-weight="bold">Chatbots IA</text>
-  <text x="105" y="95" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">70-80% consultas</text>
-  <text x="105" y="110" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">automatizadas</text>
-  <rect x="215" y="20" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="1.5"/>
-  <text x="300" y="48" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle">📝</text>
-  <text x="300" y="75" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle" font-weight="bold">Contenido IA</text>
-  <text x="300" y="95" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">1 persona = equipo</text>
-  <text x="300" y="110" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">de marketing completo</text>
-  <rect x="410" y="20" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="1.5"/>
-  <text x="495" y="48" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle">⚙️</text>
-  <text x="495" y="75" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle" font-weight="bold">Automatización</text>
-  <text x="495" y="95" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">Facturas, conciliación,</text>
-  <text x="495" y="110" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">análisis de proveedores</text>
-  <!-- Row 2 -->
-  <rect x="80" y="145" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="1.5"/>
-  <text x="165" y="173" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle">📊</text>
-  <text x="165" y="200" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle" font-weight="bold">Análisis de Datos</text>
-  <text x="165" y="218" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">Sin data scientist</text>
-  <text x="165" y="233" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">usando IA generativa</text>
-  <rect x="355" y="145" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="1.5"/>
-  <text x="440" y="173" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle">💻</text>
-  <text x="440" y="200" font-family="sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle" font-weight="bold">Desarrollo 2x-3x</text>
-  <text x="440" y="218" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">GitHub Copilot, Cursor</text>
-  <text x="440" y="233" font-family="sans-serif" font-size="12" fill="#63635d" text-anchor="middle">+30-50% productividad</text>
-</svg>
+<svg width="100%" height="280" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;"><rect style="stroke-width:1.5px;" x="20" y="20" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;text-anchor:middle;" x="105" y="48" fill="#03fa6e">💬</text><text style="font-family:sans-serif;font-size:14px;font-weight:bold;text-anchor:middle;" x="105" y="75" fill="#a1a1aa">Chatbots IA</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="105" y="95" fill="#63635d">70-80% consultas</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="105" y="110" fill="#63635d">automatizadas</text><rect style="stroke-width:1.5px;" x="215" y="20" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;text-anchor:middle;" x="300" y="48" fill="#03fa6e">📝</text><text style="font-family:sans-serif;font-size:14px;font-weight:bold;text-anchor:middle;" x="300" y="75" fill="#a1a1aa">Contenido IA</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="300" y="95" fill="#63635d">1 persona = equipo</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="300" y="110" fill="#63635d">de marketing completo</text><rect style="stroke-width:1.5px;" x="410" y="20" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;text-anchor:middle;" x="495" y="48" fill="#03fa6e">⚙️</text><text style="font-family:sans-serif;font-size:14px;font-weight:bold;text-anchor:middle;" x="495" y="75" fill="#a1a1aa">Automatización</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="495" y="95" fill="#63635d">Facturas, conciliación,</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="495" y="110" fill="#63635d">análisis de proveedores</text><rect style="stroke-width:1.5px;" x="80" y="145" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;text-anchor:middle;" x="165" y="173" fill="#03fa6e">📊</text><text style="font-family:sans-serif;font-size:14px;font-weight:bold;text-anchor:middle;" x="165" y="200" fill="#a1a1aa">Análisis de Datos</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="165" y="218" fill="#63635d">Sin data scientist</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="165" y="233" fill="#63635d">usando IA generativa</text><rect style="stroke-width:1.5px;" x="355" y="145" width="170" height="105" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;text-anchor:middle;" x="440" y="173" fill="#03fa6e">💻</text><text style="font-family:sans-serif;font-size:14px;font-weight:bold;text-anchor:middle;" x="440" y="200" fill="#a1a1aa">Desarrollo 2x-3x</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="440" y="218" fill="#63635d">GitHub Copilot, Cursor</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="440" y="233" fill="#63635d">+30-50% productividad</text></svg>
 
 ### 1. Atención al cliente con chatbots inteligentes
 
@@ -125,27 +84,7 @@ GitHub Copilot, Cursor y similares pueden aumentar la productividad de un equipo
 
 Si estás leyendo esto y pensando *"esto suena bien, pero ¿por dónde empiezo?"*, aquí va una hoja de ruta:
 
-<svg width="100%" height="130" viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;">
-  <rect x="20" y="30" width="160" height="65" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="100" y="58" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle" font-weight="bold">1</text>
-  <text x="100" y="80" font-family="sans-serif" font-size="12" fill="#a1a1aa" text-anchor="middle">Identifica el</text>
-  <text x="100" y="93" font-family="sans-serif" font-size="12" fill="#a1a1aa" text-anchor="middle">cuello de botella</text>
-  <path d="M185 60 L225 60" stroke="#03fa6e" stroke-width="2" marker-end="url(#arrow)"/>
-  <rect x="230" y="30" width="160" height="65" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="310" y="58" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle" font-weight="bold">2</text>
-  <text x="310" y="80" font-family="sans-serif" font-size="12" fill="#a1a1aa" text-anchor="middle">Piloto de bajo</text>
-  <text x="310" y="93" font-family="sans-serif" font-size="12" fill="#a1a1aa" text-anchor="middle">costo</text>
-  <path d="M395 60 L435 60" stroke="#03fa6e" stroke-width="2" marker-end="url(#arrow)"/>
-  <rect x="440" y="30" width="140" height="65" rx="8" fill="#2a2c1f" stroke="#03fa6e" stroke-width="2"/>
-  <text x="510" y="58" font-family="sans-serif" font-size="28" fill="#03fa6e" text-anchor="middle" font-weight="bold">3</text>
-  <text x="510" y="80" font-family="sans-serif" font-size="12" fill="#a1a1aa" text-anchor="middle">Capacita a tu</text>
-  <text x="510" y="93" font-family="sans-serif" font-size="12" fill="#a1a1aa" text-anchor="middle">equipo existente</text>
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#03fa6e" />
-    </marker>
-  </defs>
-</svg>
+<svg width="100%" height="130" viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg" style="background-color: #171810; border-radius: 8px; margin: 1.5em 0; border: 1px solid #2a2c1f;"><rect style="stroke-width:2px;" x="20" y="30" width="160" height="65" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;font-weight:bold;text-anchor:middle;" x="100" y="58" fill="#03fa6e">1</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="100" y="80" fill="#a1a1aa">Identifica el</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="100" y="93" fill="#a1a1aa">cuello de botella</text><path style="stroke-width:2px;" d="M185 60 L225 60" stroke="#03fa6e" marker-end="url(#arrow)"/><rect style="stroke-width:2px;" x="230" y="30" width="160" height="65" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;font-weight:bold;text-anchor:middle;" x="310" y="58" fill="#03fa6e">2</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="310" y="80" fill="#a1a1aa">Piloto de bajo</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="310" y="93" fill="#a1a1aa">costo</text><path style="stroke-width:2px;" d="M395 60 L435 60" stroke="#03fa6e" marker-end="url(#arrow)"/><rect style="stroke-width:2px;" x="440" y="30" width="140" height="65" rx="8" fill="#2a2c1f" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:28px;font-weight:bold;text-anchor:middle;" x="510" y="58" fill="#03fa6e">3</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="510" y="80" fill="#a1a1aa">Capacita a tu</text><text style="font-family:sans-serif;font-size:12px;text-anchor:middle;" x="510" y="93" fill="#a1a1aa">equipo existente</text><defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#03fa6e" /></marker></defs></svg>
 
 **Paso 1: Identifica el cuello de botella.** ¿Dónde está perdiendo tu empresa más tiempo con tareas repetitivas? Ese es tu primer objetivo.
 

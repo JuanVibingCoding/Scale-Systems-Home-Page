@@ -32,22 +32,7 @@ La IA no es un reemplazo. Es un multiplicador. Y en un país donde tu mejor inge
 
 Decir "potenciar al equipo" suena bonito en una presentación de PowerPoint, pero ¿qué carajos significa el martes a las 9 de la mañana cuando tu gente está enterrada en correos? Significa esto:
 
-<svg width="100%" height="210" viewBox="0 0 580 210" xmlns="http://www.w3.org/2000/svg" style="background-color:#171810; border-radius:8px; margin:1.5em 0; border:1px solid #2a2c1f;">
-  <rect x="20" y="20" width="250" height="40" rx="8" fill="#1f2017" stroke="#03fa6e" stroke-width="1.5"/>
-  <text x="145" y="40" font-family="sans-serif" font-size="14" font-weight="bold" fill="#03fa6e" text-anchor="middle" dominant-baseline="middle">Equipo sin IA</text>
-  <rect x="310" y="20" width="250" height="40" rx="8" fill="#1f2017" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="435" y="40" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle" dominant-baseline="middle">Equipo con IA</text>
-  <circle cx="290" cy="40" r="16" fill="#1f2017" stroke="#2a2c1f" stroke-width="1.5"/>
-  <text x="290" y="41" font-family="sans-serif" font-size="11" font-weight="bold" fill="#63635d" text-anchor="middle" dominant-baseline="middle">VS</text>
-  <text x="30" y="93" font-family="sans-serif" font-size="13" fill="#a1a1aa" dominant-baseline="middle">Repite tareas</text>
-  <text x="320" y="93" font-family="sans-serif" font-size="13" fill="#a1a1aa" dominant-baseline="middle">Enfoca valor</text>
-  <line x1="20" y1="109" x2="560" y2="109" stroke="#2a2c1f" stroke-width="0.5" opacity="0.5"/>
-  <text x="30" y="131" font-family="sans-serif" font-size="13" fill="#a1a1aa" dominant-baseline="middle">Se agota</text>
-  <text x="320" y="131" font-family="sans-serif" font-size="13" fill="#a1a1aa" dominant-baseline="middle">Escala</text>
-  <line x1="20" y1="147" x2="560" y2="147" stroke="#2a2c1f" stroke-width="0.5" opacity="0.5"/>
-  <text x="30" y="169" font-family="sans-serif" font-size="13" fill="#a1a1aa" dominant-baseline="middle">Comete errores</text>
-  <text x="320" y="169" font-family="sans-serif" font-size="13" fill="#a1a1aa" dominant-baseline="middle">Cero errores manuales</text>
-</svg>
+<svg width="100%" height="210" viewBox="0 0 580 210" xmlns="http://www.w3.org/2000/svg" style="background-color:#171810; border-radius:8px; margin:1.5em 0; border:1px solid #2a2c1f;"><rect style="stroke-width:1.5px;" x="20" y="20" width="250" height="40" rx="8" fill="#1f2017" stroke="#03fa6e"/><text style="font-family:sans-serif;font-size:14px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;" x="145" y="40" fill="#03fa6e">Equipo sin IA</text><rect style="stroke-width:1.5px;" x="310" y="20" width="250" height="40" rx="8" fill="#1f2017" stroke="#f59e0b"/><text style="font-family:sans-serif;font-size:14px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;" x="435" y="40" fill="#f59e0b">Equipo con IA</text><circle style="stroke-width:1.5px;" cx="290" cy="40" r="16" fill="#1f2017" stroke="#2a2c1f"/><text style="font-family:sans-serif;font-size:11px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;" x="290" y="41" fill="#63635d">VS</text><text style="font-family:sans-serif;font-size:13px;dominant-baseline:middle;" x="30" y="93" fill="#a1a1aa">Repite tareas</text><text style="font-family:sans-serif;font-size:13px;dominant-baseline:middle;" x="320" y="93" fill="#a1a1aa">Enfoca valor</text><line style="stroke-width:0.5px;" x1="20" y1="109" x2="560" y2="109" stroke="#2a2c1f" opacity="0.5"/><text style="font-family:sans-serif;font-size:13px;dominant-baseline:middle;" x="30" y="131" fill="#a1a1aa">Se agota</text><text style="font-family:sans-serif;font-size:13px;dominant-baseline:middle;" x="320" y="131" fill="#a1a1aa">Escala</text><line style="stroke-width:0.5px;" x1="20" y1="147" x2="560" y2="147" stroke="#2a2c1f" opacity="0.5"/><text style="font-family:sans-serif;font-size:13px;dominant-baseline:middle;" x="30" y="169" fill="#a1a1aa">Comete errores</text><text style="font-family:sans-serif;font-size:13px;dominant-baseline:middle;" x="320" y="169" fill="#a1a1aa">Cero errores manuales</text></svg>
 
 Un analista que antes le dedicaba tres días a cuadrar un reporte en Excel, con IA lo tiene en diez minutos y se la pasa pensando en cómo mejorar el negocio. Un vendedor que respondía 40 mensajes al día, con un chatbot calificando leads, atiende a los 200 que de verdad van a comprar. **La tarea se automatiza; la persona se libera.**
 

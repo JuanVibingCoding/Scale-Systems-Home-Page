@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import {Inter} from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 
@@ -113,6 +114,18 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4NRHGDQC84"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4NRHGDQC84');
+          `}
+        </Script>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

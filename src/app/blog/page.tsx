@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { getAllPosts } from '@/lib/blog';
+import { getPostsPage } from '@/lib/blog';
 import { BlogCard } from '@/components/blog/BlogCard';
+import { Pagination } from '@/components/blog/Pagination';
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogIndexPage() {
-  const posts = getAllPosts();
+  const { posts, totalPages } = getPostsPage(1);
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -67,11 +68,14 @@ export default function BlogIndexPage() {
             <p className="text-[#63635d] text-lg">No hay artículos aún. Vuelve pronto.</p>
           </div>
         ) : (
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
+          <>
+            <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </div>
+            <Pagination current={1} total={totalPages} />
+          </>
         )}
       </div>
     </section>

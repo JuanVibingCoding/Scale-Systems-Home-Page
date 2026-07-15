@@ -87,6 +87,20 @@ export function getAllPosts(): BlogPost[] {
   return readAllPosts();
 }
 
+export const POSTS_PER_PAGE = 9;
+
+export function getPostsPage(page: number): { posts: BlogPost[]; totalPages: number } {
+  const all = readAllPosts();
+  const totalPages = Math.max(1, Math.ceil(all.length / POSTS_PER_PAGE));
+  const start = (page - 1) * POSTS_PER_PAGE;
+  const posts = all.slice(start, start + POSTS_PER_PAGE);
+  return { posts, totalPages };
+}
+
+export function getTotalPages(): number {
+  return Math.max(1, Math.ceil(readAllPosts().length / POSTS_PER_PAGE));
+}
+
 export function getPostBySlug(slug: string): BlogPost | null {
   return readAllPosts().find(p => p.slug === slug) ?? null;
 }

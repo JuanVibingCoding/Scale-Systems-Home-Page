@@ -5,10 +5,13 @@ export default function robots(): MetadataRoute.Robots {
     process.env.NEXT_PUBLIC_APP_URL || 'https://scalesystems.dev';
 
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: '/blog?q=',
+      },
+    ],
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

@@ -43,13 +43,20 @@ const markdownComponents: Components = {
   ),
   code: ({ children, ...props }) => {
     const { className, ...rest } = props;
-    const isInline = !className;
+    const isInline = !className && !String(children).includes('\n');
     if (isInline) {
       return <code className="bg-[#2a2c24] text-[#03fa6e] px-1.5 py-0.5 rounded text-sm font-mono" {...rest}>{children}</code>;
     }
     return (
-      <pre className="bg-[#1f2017] border border-[#2a2c1f] rounded-xl p-4 sm:p-6 my-6 overflow-x-auto">
-        <code className="text-sm text-[#e4e4e7] font-mono leading-relaxed" {...rest}>{children}</code>
+      <pre
+        className="bg-[#1f2017] border border-[#2a2c1f] rounded-xl p-4 sm:p-6 my-6"
+        style={{
+          overflow: 'hidden',
+          whiteSpace: 'pre-wrap',
+          overflowWrap: 'anywhere',
+        }}
+      >
+        <code className="text-sm text-[#03fa6e] font-mono leading-relaxed" {...rest}>{children}</code>
       </pre>
     );
   },
@@ -119,8 +126,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <section className="min-h-screen bg-[#171810] pt-32 pb-20">
-      <article className="max-w-3xl mx-auto px-5 sm:px-8">
+    <section className="min-h-screen bg-[#171810] pt-32 pb-20 overflow-x-hidden">
+      <article className="max-w-3xl mx-auto px-5 sm:px-8 min-w-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

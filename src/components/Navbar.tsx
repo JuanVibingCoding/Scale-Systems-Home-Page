@@ -88,9 +88,9 @@ export default function Navbar() {
           onClick={(e) => handleNavClick(e, '/#inicio')}
         >
           <img
-            src="/logos/ScaleSystemsLogo250.png"
+            src="/logos/ScaleSystemsLogo.svg"
             alt="Scale Systems - Agencia de Automatización e IA en Venezuela"
-            className="h-7 md:h-9 w-auto"
+            className="h-7 w-[222px]"
           />
         </Link>
 

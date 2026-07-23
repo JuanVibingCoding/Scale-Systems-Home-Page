@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react';
-import Image from 'next/image';
 import { Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle, Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import { GlowingEffect } from './ui/glowing-effect';
@@ -165,18 +164,18 @@ export default function ContactFooter() {
           </p>
 
           <div className="space-y-4 sm:space-y-6">
-            <div className="flex items-center gap-4 text-scale-muted hover:text-scale-accent transition-colors">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card">
+            <a href="mailto:contacto@scalesystems.dev" className="flex items-center gap-4 text-scale-muted hover:text-scale-accent transition-colors group">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card group-hover:border-scale-accent transition-colors">
                 <Mail size={18} className="sm:w-5 sm:h-5" />
               </div>
-              <span className="text-base sm:text-lg font-medium break-all">ventas@scalesystems.dev</span>
-            </div>
-            <div className="flex items-center gap-4 text-scale-muted hover:text-scale-accent transition-colors">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card">
+              <span className="text-base sm:text-lg font-medium break-all">contacto@scalesystems.dev</span>
+            </a>
+            <a href="https://wa.me/584224855778" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-scale-muted hover:text-scale-accent transition-colors group">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card group-hover:border-scale-accent transition-colors">
                 <Phone size={18} className="sm:w-5 sm:h-5" />
               </div>
-              <span className="text-base sm:text-lg font-medium">+58 412 123 4567</span>
-            </div>
+              <span className="text-base sm:text-lg font-medium">+58 422 485 5778</span>
+            </a>
             <div className="flex items-center gap-4 text-scale-muted">
               <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-scale-border flex items-center justify-center bg-scale-card">
                 <MapPin size={18} className="sm:w-5 sm:h-5" />
@@ -254,7 +253,7 @@ export default function ContactFooter() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full bg-scale-bg border border-scale-border rounded-xl px-4 py-3 text-scale-text placeholder-scale-muted focus:outline-none focus:border-scale-accent focus:ring-1 focus:ring-scale-accent transition-all"
-                    placeholder="+58 412 123 4567"
+                    placeholder="+58 422 485 5778"
                   />
                 </div>
               </div>
@@ -344,7 +343,7 @@ export default function ContactFooter() {
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 mt-16 sm:mt-32 pt-8 border-t border-scale-border grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         <div className="flex flex-col items-center md:items-start gap-4">
-          <Image src="/logos/ScaleSystemsLogo250.png" alt="Scale Systems - Agencia de Automatización e IA en Venezuela" width={250} height={40} className="h-7 md:h-9 w-auto" />
+          <img src="/logos/ScaleSystemsLogo.svg" alt="Scale Systems - Agencia de Automatización e IA en Venezuela" className="h-7 w-[222px]" />
           <p className="text-sm text-scale-muted leading-relaxed max-w-xs">
             Automatizamos y potenciamos negocios en Venezuela con IA. Construimos sistemas que trabajan por ti, sin complicaciones.
           </p>

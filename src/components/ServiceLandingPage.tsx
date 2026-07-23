@@ -653,7 +653,7 @@ export default function ServiceLandingPage({
   desc,
   whatsappText,
 }: ServiceLandingPageProps) {
-  const wppLink = `https://wa.me/584121234567?text=${encodeURIComponent(whatsappText)}`;
+  const wppLink = `https://wa.me/58422485578?text=${encodeURIComponent(whatsappText)}`;
   const isDisenoWeb = id === 'diseno-web';
   const isAutomatizacion = id === 'automatizacion';
   const isChatbots = id === 'chatbots';
@@ -1654,7 +1654,7 @@ export default function ServiceLandingPage({
                           </li>
                         ))}
                       </ul>
-                      <a href={`https://wa.me/584121234567?text=${encodeURIComponent('¡Hola! Me interesa el plan ' + plan.name + ' de Chatbot IA.')}`} target="_blank" rel="noopener noreferrer" className={cn('inline-flex items-center justify-center gap-2.5 px-7 py-[13px] rounded-full font-semibold text-sm w-full transition-all duration-150', plan.featured ? 'bg-scale-accent text-[#0c1008] hover:translate-y-[-2px] hover:shadow-[0_10px_30px_-8px_rgba(3,250,110,0.28)]' : 'bg-transparent border border-scale-border text-scale-text hover:border-scale-accent hover:text-scale-accent')}>
+                      <a href={`https://wa.me/58422485578?text=${encodeURIComponent('¡Hola! Me interesa el plan ' + plan.name + ' de Chatbot IA.')}`} target="_blank" rel="noopener noreferrer" className={cn('inline-flex items-center justify-center gap-2.5 px-7 py-[13px] rounded-full font-semibold text-sm w-full transition-all duration-150', plan.featured ? 'bg-scale-accent text-[#0c1008] hover:translate-y-[-2px] hover:shadow-[0_10px_30px_-8px_rgba(3,250,110,0.28)]' : 'bg-transparent border border-scale-border text-scale-text hover:border-scale-accent hover:text-scale-accent')}>
                         {plan.btnText}
                       </a>
                     </div>

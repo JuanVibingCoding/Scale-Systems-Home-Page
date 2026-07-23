@@ -39,7 +39,7 @@ Atención instantánea que cierra ventas por ti.
 ## INFORMACIÓN DE CONTACTO
 
 - **Email:** hola@scalesystems.com.ve
-- **Teléfono / WhatsApp:** +58 412 123 4567
+- **Teléfono / WhatsApp:** +58 422 485 5778
 - **Ubicación:** Valencia, Venezuela
 
 Para agendar una llamada de diagnóstico gratuita, el cliente puede escribir al WhatsApp o llenar el formulario de la sección "Solicitar Presupuesto" en la página.

@@ -4,6 +4,7 @@ description: "Descubre qué son los modelos de lenguaje de código abierto y por
 date: "2026-07-23"
 tags: ["Inteligencia Artificial", "Código Abierto", "Tecnología", "Venezuela", "Innovación"]
 readingTime: "7 min de lectura"
+relatedService: "automatizacion"
 thumbnail: "/blog/modelos-de-lenguaje-de-codigo-abierto-800.webp"
 featuredImage: "/blog/modelos-de-lenguaje-de-codigo-abierto-1200.webp"
 ---
@@ -146,6 +147,3 @@ Tres takeaways:
 Ya no hay excusa para no usar inteligencia artificial en tu negocio. La tecnología está disponible, es gratuita y funciona en las condiciones que tenemos.
 
 En Scale Systems te ayudamos a implementar soluciones de IA adaptadas a la realidad venezolana. [Contáctanos para una consultoría](/servicio/chatbots) y descubre cómo podemos automatizar tu negocio con modelos de código abierto.
-
-> **Prompt para imagen destacada (DALL-E / Stable Diffusion):**
-> A Venezuelan tech professional sitting at a desk in a dimly lit room with a laptop screen glowing green showing a terminal running an AI model, surrounded by hints of Caracas skyline through a window, dramatic lighting with neon green accents, dark atmosphere, photorealistic, 4k, high contrast --ar 16:9
